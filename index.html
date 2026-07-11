@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yanjin Li — AI Engineering Portfolio & CV</title>
+<style>
+  :root{
+    --bg:#FCFCFB; --paper:#FFFFFF; --ink:#1A1A1A; --sub:#5A5A5A; --faint:#8A8A8A;
+    --line:#E4E2DC; --line-2:#EEECE6; --accent:#1F3A5F; --accent-soft:#EDF1F6;
+    --tag-bg:#F2F0EA; --tag-ink:#565046;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Songti SC",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue","PingFang SC","Noto Sans SC",sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .lang-en .zh{display:none!important}
+  .lang-zh .en{display:none!important}
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code{font-family:var(--mono);font-size:.86em;background:var(--tag-bg);padding:1px 5px;border-radius:3px}
+
+  /* top bar */
+  .bar{position:sticky;top:0;z-index:40;background:rgba(252,252,251,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .bar .wrap{display:flex;align-items:center;gap:18px;height:50px}
+  .bar .nm{font-family:var(--serif);font-weight:600;font-size:15.5px}
+  .bar nav{display:flex;gap:16px;margin-left:auto;flex-wrap:wrap}
+  .bar nav a{color:var(--sub);font-size:13px}
+  .bar nav a:hover{color:var(--accent);text-decoration:none}
+  #lang{border:1px solid var(--line);background:var(--paper);color:var(--sub);border-radius:4px;padding:3px 10px;font-size:12px;cursor:pointer;font-family:var(--sans)}
+  #lang:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* header */
+  header.masthead{padding:52px 0 34px;border-bottom:2px solid var(--ink)}
+  .masthead h1{font-family:var(--serif);font-size:34px;letter-spacing:.01em;font-weight:600}
+  .masthead .role{margin-top:6px;font-size:15px;color:var(--accent);font-weight:500}
+  .masthead .summary{margin-top:18px;color:#39363F;max-width:772px;font-size:15px;line-height:1.62}
+  .masthead .summary p{margin-bottom:11px}
+  .masthead .summary p:last-child{margin-bottom:0}
+  .more-btn{margin-top:8px;border:none;background:none;color:var(--accent);font-family:var(--sans);font-size:13px;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px}
+  .more-btn:hover{opacity:.72}
+  .more{margin-top:12px}
+  .more>summary{cursor:pointer;list-style:none;font-size:13px;color:var(--accent);display:inline-flex;align-items:center;gap:6px}
+  .more>summary::-webkit-details-marker{display:none}
+  .more>summary::before{content:"＋";font-family:var(--mono);font-size:12px}
+  .more[open]>summary::before{content:"–"}
+  .more>summary:hover{text-decoration:underline}
+  .more .full{margin-top:10px;padding:14px 18px;border-left:2px solid var(--line);background:var(--paper);border-radius:0 6px 6px 0;font-size:14px;color:var(--sub);max-width:772px}
+  .more .full p{margin-bottom:10px}
+  .more .full p:last-child{margin-bottom:0}
+  .masthead .contact{margin-top:16px;font-size:13px;color:var(--faint);display:flex;gap:16px;flex-wrap:wrap}
+  .masthead .contact a{color:var(--sub)}
+
+  /* generic section */
+  section{padding:40px 0;border-bottom:1px solid var(--line)}
+  .sec-h{font-family:var(--serif);font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+  .sec-sub{font-size:13px;color:var(--faint);margin-bottom:22px}
+
+  /* ===== INDEX / DIRECTORY ===== */
+  .cat-block{margin-bottom:22px}
+  .cat-title{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin:0 0 4px;padding-bottom:6px;border-bottom:1px solid var(--line-2)}
+  .cat-desc{font-size:12.5px;color:var(--faint);margin-bottom:10px}
+  .idx-row{display:flex;gap:14px;align-items:baseline;padding:8px 8px;border-radius:6px;text-decoration:none;color:var(--ink)}
+  .idx-row:hover{background:var(--accent-soft);text-decoration:none}
+  .idx-row .no{font-family:var(--mono);font-size:12px;color:var(--faint);min-width:24px}
+  .idx-row .nm{font-weight:600;font-size:14.5px;white-space:nowrap}
+  .idx-row .one{font-size:13px;color:var(--sub);flex:1}
+  .idx-row .tp{font-size:10.5px;font-family:var(--mono);color:var(--tag-ink);background:var(--tag-bg);padding:2px 7px;border-radius:3px;white-space:nowrap}
+  @media(max-width:640px){.idx-row{flex-wrap:wrap;gap:6px}.idx-row .one{flex-basis:100%;order:3}}
+
+  /* ===== PROJECT ENTRY ===== */
+  .proj{padding:34px 0;border-bottom:1px solid var(--line);scroll-margin-top:60px}
+  .proj:last-child{border-bottom:none}
+  .proj-top{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+  .proj-no{font-family:var(--mono);font-size:13px;color:var(--faint)}
+  .proj h3{font-family:var(--serif);font-size:22px;font-weight:600}
+  .proj .type{font-size:10.5px;font-family:var(--mono);letter-spacing:.05em;color:#fff;background:var(--accent);padding:2px 8px;border-radius:3px;text-transform:uppercase}
+  .proj .repo{margin-left:auto;font-size:12px;font-family:var(--mono);color:var(--faint)}
+  .proj .glance{margin-top:10px;font-size:15px;color:var(--ink);max-width:760px}
+  .proj .glance b{color:var(--ink)}
+  .meta{margin-top:12px;font-size:12.5px;color:var(--sub);display:flex;flex-wrap:wrap;gap:6px 18px}
+  .meta .m b{color:var(--faint);font-weight:600;font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;margin-right:5px}
+
+  /* labeled rows */
+  .rows{margin-top:20px;display:grid;grid-template-columns:132px 1fr;gap:2px 20px}
+  .rows .lbl{font-size:11px;font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--accent);padding-top:10px;font-weight:600}
+  .rows .val{padding:8px 0;font-size:14px;border-top:1px solid var(--line-2)}
+  .rows .val:first-of-type,.rows .lbl:first-of-type{border-top:none}
+  .rows .lbl{border-top:1px solid var(--line-2)}
+  .rows .lbl.first,.rows .val.first{border-top:none}
+  .rows ul{padding-left:16px;margin:0}
+  .rows li{margin-bottom:5px}
+  .rows p{margin:0}
+  .stagelist{list-style:none;padding-left:0}
+  .stagelist li{margin-bottom:8px;padding-left:0}
+  .stagelist .ph{font-family:var(--mono);font-size:11.5px;color:var(--accent);font-weight:600;margin-right:6px}
+  .limit{color:var(--sub)}
+  .chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-family:var(--mono);font-size:11px;background:var(--tag-bg);color:var(--tag-ink);border-radius:3px;padding:2px 8px}
+  .backlink{margin-top:16px;font-size:12px;font-family:var(--mono)}
+  @media(max-width:640px){.rows{grid-template-columns:1fr;gap:0}.rows .lbl{padding-top:14px;border-top:1px solid var(--line-2)}.rows .val{border-top:none;padding-top:2px}}
+
+  /* ===== EXPERIENCE / EDUCATION (resume) ===== */
+  .job{padding:16px 0;border-top:1px solid var(--line-2)}
+  .job:first-child{border-top:none}
+  .job .jt{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+  .job .org{font-weight:600;font-size:15px}
+  .job .pos{color:var(--sub);font-size:13.5px}
+  .job .jmeta{margin-left:auto;font-size:12px;color:var(--faint);font-family:var(--mono);white-space:nowrap;text-align:right}
+  .job ul{margin:8px 0 0;padding-left:18px}
+  .job li{margin-bottom:4px;font-size:13.5px;color:var(--ink)}
+  .edu{padding:12px 0;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .edu:first-child{border-top:none}
+  .edu .l b{font-size:14.5px}
+  .edu .l .c{font-size:13px;color:var(--sub);margin-top:2px}
+  .edu .r{font-size:12.5px;color:var(--faint);font-family:var(--mono);white-space:nowrap}
+
+  footer{padding:34px 0 60px;color:var(--faint);font-size:13px}
+  footer a{color:var(--sub)}
+
+  @media print{
+    .bar{display:none}.more{display:none}.backlink{display:none}
+    .proj,.job,.edu,.flagship,.cat-block{break-inside:avoid}
+    .masthead{break-after:avoid}
+    section{padding:20px 0}.proj{padding:18px 0}
+    body{font-size:10.5px;background:#fff}.wrap{max-width:none;padding:0}
+    a{color:var(--ink)}
+    .masthead .summary{color:#000}
+    @page{margin:14mm 14mm}
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <span class="nm">Yanjin Li</span>
+    <nav>
+      <a href="#index"><span class="en">Index</span><span class="zh">目录</span></a>
+      <a href="#projects"><span class="en">Projects</span><span class="zh">项目</span></a>
+      <a href="#experience"><span class="en">Experience</span><span class="zh">经历</span></a>
+      <a href="#education"><span class="en">Education</span><span class="zh">教育</span></a>
+    </nav>
+    <button id="lang">中文</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1>Yanjin Li</h1>
+    <div class="role">
+      <span class="en">Self-taught AI engineering & research · product and finance background</span>
+      <span class="zh">自学 AI 工程与研究 · 兼具产品与金融背景</span>
+    </div>
+    <div class="summary">
+      <p><span class="en">I'm a self-taught builder — high agency, deep curiosity, and the courage to keep trying. My path runs from studying French and Japanese to a Master's in Management &amp; Finance at <b>ESCP</b> (Paris &amp; London); and from strategy at <b>TikTok</b> and product operations at <b>DiDi</b> to Global Markets at <b>HSBC</b> and corporate banking at <b>BNP Paribas</b> — across Beijing, London and Paris.</span><span class="zh">我是一个靠自学成长的建造者 —— 高 agency、强好奇心，以及不断尝试的勇气。我的路径从自学法语与日语，到在 <b>ESCP</b> 攻读管理学与金融硕士（巴黎与伦敦）；从 <b>TikTok</b> 策略团队、<b>滴滴</b>产品运营，到<b>汇丰</b>全球市场部与<b>法国巴黎银行</b>公司金融实习 —— 横跨北京、伦敦与巴黎。</span></p>
+      <p><span class="en">Since early 2026 I've taught myself AI entirely from papers and online courses, then built <b>11 projects in three months</b> to make each idea real — from training-method research (a <b>4.16B-parameter</b> model trained with no backpropagation) and a schema-first cross-device AI system (<b>42 JSON schemas</b>), to trustworthy applied ML and shipped local-first products. I want to take on harder problems here, alongside people who are great at it.</span><span class="zh">自 2026 年初起，我完全靠阅读论文与网络课程自学 AI，随后在<b>三个月内做了 11 个项目</b>，让每一个想法变得真实 —— 从训练方法研究（一个无反向传播训练的 <b>4.16B 参数</b>模型）、schema-first 的跨设备 AI 系统（<b>42 份 JSON Schema</b>），到可信应用 ML 与已上线的本地优先产品。我想在这里啃更难的问题，和真正优秀的人一起。</span></p>
+      <details class="more">
+        <summary><span class="en">Read the full version</span><span class="zh">展开完整版</span></summary>
+        <div class="full">
+          <p><span class="en">I'm a self-taught builder driven by curiosity and a high tolerance for the unknown. What I trust most in myself is courage — the willingness to try, to reflect, and to keep going. It has shaped every step: from learning French and Japanese, to studying business and finance for a Master's at ESCP; from the strategy team at TikTok and product operations at DiDi, to Global Markets at HSBC and corporate banking at BNP Paribas — living and working across Beijing, London and Paris. Each of these experiences let me take in more of the world, widened the boundaries of what I understand, and, along the way, taught me who I am.</span><span class="zh">我是一个靠自学成长的建造者，由好奇心和对未知的高接受度驱动。我最信任自己的一点是勇气 —— 愿意尝试、愿意反思、也能一直走下去。它塑造了每一步：从自学法语与日语，到在 ESCP 攻读商科与金融硕士；从 TikTok 的策略团队、滴滴的产品运营，到汇丰的全球市场部与法国巴黎银行的公司金融实习 —— 在北京、伦敦与巴黎生活与工作。这些经历让我接纳了更多的世界，拓宽了我认知的边界，也在这个过程里让我明白我是谁。</span></p>
+          <p><span class="en">I came to AI entirely on my own. Since early 2026 I've worked through paper after paper and course after course, reading the code of the models and systems I wanted to understand — down to how the weights update — and building a project for each idea to make the understanding real. Those projects span the full range: the essence of learning algorithms and weight updates; deploying models into working multi-device systems; optimizing and innovating on top of model capabilities for specific scenarios; and shipping tools that automate and speed up real work.</span><span class="zh">我完全靠自己走进 AI。自 2026 年初起，我一篇论文接一篇论文、一门课接一门课地学，把想弄懂的模型与系统的代码逐行读透 —— 直到权重如何更新 —— 并为每一个想法做一个项目，让理解变得真实。这些项目覆盖完整的谱系：学习算法与权重更新的本质；把模型部署进可用的多设备系统；在模型能力之上针对具体场景做优化与创新；以及做出能自动化、为真实工作提效的产品。</span></p>
+          <p><span class="en">Away from the screen I paint, read widely, and love moving between cultures — I speak fluent Chinese, English and French, with some Japanese. I observe the world closely and on my own terms; it's my largest source of exploration. I'm sensitive and attentive, open to almost anything, resilient, and good at going from zero to one — and I believe in myself.</span><span class="zh">屏幕之外，我画画、广泛阅读、热爱在不同文化间穿行 —— 我能说流利的中文、英文与法语，以及一些日语。我以自己的方式细致地观察世界，那是我最大的探索来源。我敏感细腻，几乎对一切保持开放，很有韧性，擅长从零到一 —— 并且，我相信我自己。</span></p>
+        </div>
+      </details>
+    </div>
+    <div class="contact">
+      <a href="mailto:geraldineliyanjin@gmail.com">geraldineliyanjin@gmail.com</a>
+      <a href="https://github.com/Yanjin-ai" target="_blank" rel="noopener">github.com/Yanjin-ai</a>
+      <a href="https://yanjin-ai.github.io/portfolio/" target="_blank" rel="noopener">yanjin-ai.github.io/portfolio</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ INDEX ============ -->
+<section id="index">
+  <div class="wrap">
+    <div class="sec-h"><span class="en">Index — 11 Projects</span><span class="zh">目录 — 11 个项目</span></div>
+    <div class="sec-sub"><span class="en">Grouped by type. Click any entry to jump to its full write-up.</span><span class="zh">按类型分组，点击任意条目跳转到对应项目的完整说明。</span></div>
+
+    <div class="cat-block">
+      <div class="cat-title"><span class="en">A · Research & Training Methods</span><span class="zh">A · 研究与训练方法</span></div>
+      <div class="cat-desc"><span class="en">Presented as condensed technical reports: objective → method → staged progression → results → lessons.</span><span class="zh">以缩略技术报告呈现：目标 → 方法 → 分阶段推进 → 结论 → 教训。</span></div>
+      <a class="idx-row" href="#p-zerograd"><span class="no">01</span><span class="nm">Zero Gradient</span><span class="one"><span class="en">4.16B-param MoE LM trained with no backpropagation; capability-boundary study.</span><span class="zh">无反向传播训练的 4.16B MoE 语言模型；能力边界研究。</span></span><span class="tp">research</span></a>
+      <a class="idx-row" href="#p-neurogolf"><span class="no">02</span><span class="nm">NeuroGolf (ARC-AGI)</span><span class="one"><span class="en">Compiling 400 ARC tasks into minimal ONNX circuits; scorer reverse-engineering, anti-overfitting.</span><span class="zh">把 400 个 ARC 任务编译成最小 ONNX 电路；逆向评分器、抗过拟合。</span></span><span class="tp">research</span></a>
+      <a class="idx-row" href="#p-nemotron"><span class="no">03</span><span class="nm">Nemotron Post-training</span><span class="one"><span class="en">Post-training pipeline for a 30B MoE reasoning model; root-caused failure.</span><span class="zh">30B MoE 推理模型后训练流水线；失败的完整归因。</span></span><span class="tp">research</span></a>
+      <a class="idx-row" href="#p-orbit"><span class="no">04</span><span class="nm">Orbit Wars</span><span class="one"><span class="en">Multi-agent game player; evaluation-methodology study (offline vs live).</span><span class="zh">多智能体博弈程序；评估方法论研究（离线 vs 线上）。</span></span><span class="tp">research</span></a>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-title"><span class="en">B · AI Systems & Architecture</span><span class="zh">B · AI 系统与架构</span></div>
+      <div class="cat-desc"><span class="en">Presented by architecture: data model, schemas, codebase, core mechanisms, design decisions.</span><span class="zh">以架构呈现：数据模型、schema、代码库、核心机制、设计决策。</span></div>
+      <a class="idx-row" href="#p-gemma"><span class="no">05</span><span class="nm">Gemma4all</span><span class="one"><span class="en">Cross-device task system; schema-first, event-sourced, local-first, HITL approvals.</span><span class="zh">跨设备任务系统；schema-first、事件溯源、本地优先、人在回路审批。</span></span><span class="tp">system</span></a>
+      <a class="idx-row" href="#p-voice"><span class="no">06</span><span class="nm">VoiceInput</span><span class="one"><span class="en">macOS push-to-talk speech input; pure Swift, zero dependencies.</span><span class="zh">macOS 按键语音输入；纯 Swift，零依赖。</span></span><span class="tp">system</span></a>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-title"><span class="en">C · Applied ML & Decision Systems</span><span class="zh">C · 应用 ML 与决策系统</span></div>
+      <div class="cat-desc"><span class="en">Presented as ML systems: data, model, calibration/uncertainty/fairness, and the operational decision layer.</span><span class="zh">以 ML 系统呈现：数据、模型、校准/不确定性/公平性，以及运营决策层。</span></div>
+      <a class="idx-row" href="#p-triage"><span class="no">07</span><span class="nm">TriageGeist</span><span class="one"><span class="en">Emergency-triage decision stack; label-leakage finding, conformal uncertainty, fairness audit.</span><span class="zh">急诊分诊决策栈；标签泄漏发现、conformal 不确定性、公平性审计。</span></span><span class="tp">applied-ml</span></a>
+      <a class="idx-row" href="#p-maze"><span class="no">08</span><span class="nm">Maze Crawler</span><span class="one"><span class="en">Layered multi-unit strategy agent; BFS planning, conflict resolution, CI.</span><span class="zh">分层多单位策略 agent；BFS 规划、冲突解算、CI。</span></span><span class="tp">applied-ml</span></a>
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-title"><span class="en">D · AI Products & Tools</span><span class="zh">D · AI 产品与工具</span></div>
+      <div class="cat-desc"><span class="en">Presented as products: positioning, what it does, how it was built, current status.</span><span class="zh">以产品呈现：定位、功能、如何构建、当前状态。</span></div>
+      <a class="idx-row" href="#p-showrunner"><span class="no">09</span><span class="nm">AI Showrunner</span><span class="one"><span class="en">One-sentence → subtitled vertical short film; VLM critic loop, character consistency.</span><span class="zh">一句话 → 带字幕竖屏短剧；VL 评审闭环、角色一致性。</span></span><span class="tp">product</span></a>
+      <a class="idx-row" href="#p-french"><span class="no">10</span><span class="nm">Offline French Companion</span><span class="one"><span class="en">In-browser LLM language tutor; dictionary + speech + OCR + TTS, fully offline.</span><span class="zh">纯浏览器 LLM 法语学习助手；词典 + 语音 + OCR + 朗读，完全离线。</span></span><span class="tp">product</span></a>
+      <a class="idx-row" href="#p-atelier"><span class="no">11</span><span class="nm">Atelier Post</span><span class="one"><span class="en">Shipped art-to-Instagram tool; one codebase across web, PWA, iOS.</span><span class="zh">已上线的艺术作品发布工具；一套代码覆盖 Web、PWA、iOS。</span></span><span class="tp">product</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<div id="projects"></div>
+
+<!-- ========== A · RESEARCH ========== -->
+<section style="padding-bottom:0">
+  <div class="wrap"><div class="sec-h"><span class="en">A · Research & Training Methods</span><span class="zh">A · 研究与训练方法</span></div></div>
+
+  <!-- 01 ZERO GRADIENT -->
+  <div class="wrap"><article class="proj" id="p-zerograd">
+    <div class="proj-top">
+      <span class="proj-no">01</span><h3>Zero Gradient</h3><span class="type">research</span>
+      <span class="repo">Python · Kaggle T4 · 2026-06-25 → 07-05</span>
+    </div>
+    <p class="glance"><span class="en">Trained a <b>4.16B-parameter content-routed Mixture-of-Experts language model with backpropagation globally disabled</b> on a single 16 GB T4, then ran a five-phase program to map exactly what such a model can and cannot learn — and used a controlled experiment to prove the limiting factor is architectural, not the absence of gradients.</span><span class="zh">在单块 16 GB T4 上，<b>全局禁用反向传播</b>训练了一个 4.16B 参数的内容路由 MoE 语言模型，随后用五阶段实验精确测绘这种模型能学会什么、学不会什么，并用对照实验证明限制因素在架构，而非缺少梯度。</span></p>
+    <div class="meta">
+      <span class="m"><b>scale</b>4.16B params, 0.42% experts updated/step</span>
+      <span class="m"><b>result</b>test ppl 1355 (vs 159 same-budget backprop control)</span>
+      <span class="m"><b>artifacts</b>paper draft · 8-pg workshop paper · arXiv package</span>
+    </div>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Objective</span><span class="zh">目标</span></div>
+      <div class="val first"><p><span class="en">Test whether layer-local learning rules (no end-to-end gradients) can scale to a multi-billion-parameter LM under a hard single-GPU memory constraint, and characterize the resulting capability ceiling precisely.</span><span class="zh">检验层级本地学习规则（无端到端梯度）能否在单卡显存硬约束下扩展到数十亿参数的语言模型，并精确刻画由此产生的能力天花板。</span></p></div>
+
+      <div class="lbl"><span class="en">Method</span><span class="zh">方法</span></div>
+      <div class="val"><p><span class="en">Layer-local losses with depth-supervised readout heads replace gradients; EMA-prototype content routing with capacity control; frozen causal attention (reservoir-computing style). 4 layers × 950 experts, top-2 routing, BPE-32k, WikiText-103. Fully deterministic and reproducible. A same-budget backprop transformer (42M) serves as the cost control.</span><span class="zh">用层级本地损失 + 深度监督读出头替代梯度；EMA 原型内容路由 + 容量控制；冻结因果注意力（reservoir computing 思路）。4 层 × 950 专家，top-2 路由，BPE-32k，WikiText-103。完全确定性可复现。用同预算反向传播 Transformer（42M）作为代价对照。</span></p></div>
+
+      <div class="lbl"><span class="en">Progression</span><span class="zh">推进过程</span></div>
+      <div class="val"><ul class="stagelist">
+        <li><span class="ph">A–D</span><span class="en">Build & scale — nano prototype → 4B on T4. Found the working triangle: extreme-sparse update budget (0.42%/step) + content routing + depth supervision. Reached ppl 1355; measured the 3–9× cost vs the backprop control (159).</span><span class="zh">构建与扩放 —— nano 原型 → T4 上 4B。找到有效三角组合：极稀疏更新预算（每步 0.42%）+ 内容路由 + 深度监督。困惑度 1355；量化出相对 BP 对照（159）的 3–9 倍代价。</span></li>
+        <li><span class="ph">E</span><span class="en">Find the boundary — post-training on three task types: sentiment 79%, NLI at chance, arithmetic at chance. A clean, structure-driven boundary.</span><span class="zh">寻找边界 —— 在三类任务上后训练：情感 79%，NLI 随机，算术随机。一条清晰的、由任务结构决定的边界。</span></li>
+        <li><span class="ph">F–G</span><span class="en">In-model fixes — 5 improvement routes (data / objective / attention / non-collapse readout / deep BP); none broke the boundary. Three mechanistic hypotheses falsified by probes.</span><span class="zh">模型内修复 —— 5 条改进路线（数据/目标/注意力/非塌缩读出/深层 BP），无一突破边界。三个机制假说被探针证伪。</span></li>
+        <li><span class="ph">H</span><span class="en">Controlled study — an isolated standard trainable-attention transformer solves the same synthetic tasks at 100% and reaches 69.97% on real SNLI (vs 33.4%). Bottleneck located in the frozen architecture.</span><span class="zh">对照研究 —— 隔离的标准可训练注意力 Transformer 瞬间解决同样的合成任务（100%），真实 SNLI 达 69.97%（对比 33.4%）。瓶颈定位到冻结架构。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Conclusion</span><span class="zh">结论</span></div>
+      <div class="val"><p><span class="en">The capability ceiling is architectural, not algorithmic: frozen attention cannot represent relational structure, regardless of gradient budget. "Capability boundary as a function of task structure" — bag compositionality ≪ relational alignment ≪ multi-step depth — is an axis orthogonal to scaling laws.</span><span class="zh">能力天花板在架构而非算法：冻结注意力无法表示关系结构，与梯度预算无关。"能力边界作为任务结构的函数"（词袋组合性 ≪ 关系对齐 ≪ 多步深度）是一条与 scaling laws 正交的研究轴。</span></p></div>
+
+      <div class="lbl"><span class="en">Lessons</span><span class="zh">教训</span></div>
+      <div class="val"><p><span class="en">Ran it like a real research program: pre-registered pass/fail gates, hypothesis→probe→falsification loops, LOCKED/INTERPRETATION/PROPOSAL labels separating fact from inference. Caught and publicly corrected two false-positive results caused by training artifacts, then standardized on task-agnostic closed-form probes for all capability claims.</span><span class="zh">当作真正的研究计划来跑：预注册判定门、假说→探针→证伪循环、用 LOCKED/INTERPRETATION/PROPOSAL 标签区分事实与推断。发现并公开纠正了两个由训练工件造成的假性结果，此后所有能力论断统一改用与任务无关的闭式探针。</span></p></div>
+
+      <div class="lbl"><span class="en">Limitations</span><span class="zh">局限</span></div>
+      <div class="val"><p class="limit"><span class="en">1355 ppl is far from a usable LM (effective only on bag-like tasks and LM); control models are 12–21M, so their 100% transfer isn't directly extrapolable to 4B (stated in the paper); even the control hits a multi-step wall at k≥4 and scores 2% on generative GSM8K.</span><span class="zh">1355 的困惑度离可用语言模型很远（仅在词袋类任务与语言建模上有效）；对照模型仅 12–21M，其 100% 迁移不能直接外推到 4B（论文已说明）；即便对照架构也在 k≥4 多步推理撞墙，生成式 GSM8K 仅 2%。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">PyTorch (grad disabled)</span><span class="chip">layer-local learning</span><span class="chip">MoE · 950 experts/layer</span><span class="chip">EMA prototype routing</span><span class="chip">frozen attention</span><span class="chip">WikiText-103 · BPE-32k</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+
+  <!-- 02 NEUROGOLF -->
+  <div class="wrap"><article class="proj" id="p-neurogolf">
+    <div class="proj-top">
+      <span class="proj-no">02</span><h3>NeuroGolf — ARC-AGI Circuit Compiler</h3><span class="type">research</span>
+      <span class="repo">Python · ONNX / onnxruntime · 2026-07</span>
+    </div>
+    <p class="glance"><span class="en">Reframed an ARC-AGI "neural golf" competition — minimize the size of a static ONNX network that reproduces each of 400 ARC tasks, scored <code>max(1, 25 − ln(params + memory))</code> — from a learning problem into <b>program synthesis + circuit golfing</b>, by reverse-engineering the scorer into a cost model and compiling known task rules into minimal, overfitting-proof integer-weight circuits.</span><span class="zh">把一个 ARC-AGI"神经高尔夫"比赛 —— 为 400 个 ARC 任务各自最小化一个能复现其变换的静态 ONNX 网络，评分 <code>max(1, 25 − ln(params + memory))</code> —— 从一个学习问题重构为<b>程序合成 + 电路 golfing</b>：把评分器逆向成成本模型，再把已知的任务规则编译成最小的、抗过拟合的整数权重电路。</span></p>
+    <div class="meta">
+      <span class="m"><b>scope</b>400 ARC tasks · one ONNX circuit each</span>
+      <span class="m"><b>baseline</b>strongest public bundle LB 7243 (3-mo community-tuned)</span>
+      <span class="m"><b>deliverable</b>transferable cost-model + methodology note</span>
+    </div>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Reframing</span><span class="zh">问题重构</span></div>
+      <div class="val first"><p><span class="en">The competition looks like few-shot learning, but an official per-task Python generator (arc-gen) <em>is</em> the ground-truth rule in executable form — and the same-distribution sampler for the hidden private set; a symbolic DSL solver (arc-dsl) covers 280 tasks. So the task is not "infer the rule" but "compile a known rule into a minimal, constraint-satisfying, overfitting-proof ONNX circuit." Identifying this was the single largest lever.</span><span class="zh">比赛表面是 few-shot 学习，但官方每题一个 Python 生成器（arc-gen）<em>就是</em>真值规则的可执行形式 —— 同时也是私有集的同分布采样器；符号 DSL solver（arc-dsl）覆盖 280 题。于是任务不是"推断规则"，而是"把已知规则编译成满足约束、抗过拟合的最小 ONNX 电路"。识别这一点是最大的杠杆。</span></p></div>
+
+      <div class="lbl"><span class="en">Method</span><span class="zh">方法</span></div>
+      <div class="val"><p><span class="en">Built the toolchain: an oracle replicating the official scorer; an <code>onnx.helper</code> graph-building library with a static-cost function and single-node circuit factories; a three-level validator (official examples + N freshly generated examples + constraint audit, run in isolated subprocesses); and auto-fitters (single-Conv integer-weight LP, two-layer torch).</span><span class="zh">搭建工具链：复刻官方评分器的 oracle；带静态成本函数与单节点电路工厂的 <code>onnx.helper</code> 建图库；三级验证器（官方样例 + N 个现场生成的新样例 + 约束审计，均在隔离子进程中运行）；以及自动拟合器（单 Conv 整数权重 LP、两层 torch）。</span></p></div>
+
+      <div class="lbl"><span class="en">Findings</span><span class="zh">发现</span></div>
+      <div class="val"><ul class="stagelist">
+        <li><span class="ph">cost model</span><span class="en">Reverse-engineered the scorer into "physics": cost = params + intermediate-tensor bytes; input/output tensors and node attributes are free (single-node circuits ≈ 0 memory); the log scale means redesign ≫ tuning (halving cost is only +0.69). This drove every design choice.</span><span class="zh">把评分器逆向成"物理定律"：cost = 参数 + 中间张量字节；输入/输出张量与节点属性免费（单节点电路 ≈ 0 内存）；log 尺度意味着重设计 ≫ 微调（成本砍半仅 +0.69）。这决定了每一个设计选择。</span></li>
+        <li><span class="ph">anti-overfit</span><span class="en">Because the private set is generator-sampled, fit and validate on ≥3000 freshly generated examples — the official ~265 examples give false positives.</span><span class="zh">私有集由生成器采样，故拟合与验证都用 ≥3000 现场生成的新样例 —— 官方约 265 样例会假阳性。</span></li>
+        <li><span class="ph">key lesson</span><span class="en">An LP-fit conv passed 3000 local examples yet scored 0 on Kaggle: LP found weights separating the current samples, not the true rule. Conclusion — fitted circuits are private-set-untrustworthy; only hand-written integer-weight circuits that implement the true rule (double-sided margin ≥ 1) are robust.</span><span class="zh">一个 LP 拟合的 conv 本地过 3000 新样例，Kaggle 却得 0 分：LP 找到的是"能分开当前样本的权重"，不是真规则。结论 —— 拟合类电路对私有集不可信；只有手写、实现真规则、双侧 margin ≥ 1 的整数权重电路才稳健。</span></li>
+        <li><span class="ph">audit</span><span class="en">Reverse-audited the scorer for exploitable holes (early &gt;9000 exploit scores had been re-scored away by the organizers) and confirmed the top ~8000 is legitimate golfing with no residual exploit.</span><span class="zh">逆向审计评分器有无可利用漏洞（早期 &gt;9000 的漏洞分已被主办方重评打回），确认榜首 ~8000 是合法 golfing，无残余漏洞。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Conclusion</span><span class="zh">结论</span></div>
+      <div class="val"><p><span class="en">The strongest public baseline (LB 7243) is a 3-month community-tuned bundle already near the physical cost floor on many tasks; the realistic legal ceiling is ~7300–7500, and top-10 (~7920) needs hundreds of tasks of deep golfing. Marginal gains come only from structure the baseline didn't cover, which needs genuine spatial computation (enclosure / ray-cast / counting) that resists cheap circuits.</span><span class="zh">最强公开基线（LB 7243）是社区三个月精调的强 bundle，在很多题上已贴近物理成本下界；现实合法天花板约 7300–7500，前 10（~7920）需要数百题深度 golfing。边际增益只来自基线未覆盖、需要真实空间计算（enclosure / 射线投射 / 计数）的结构，难以廉价电路化。</span></p></div>
+
+      <div class="lbl"><span class="en">Lessons</span><span class="zh">教训</span></div>
+      <div class="val"><ul>
+        <li><span class="en">When a contest is dressed as "few-shot learning," first check for a generator / reference implementation that degenerates learning into compilation — the biggest lever.</span><span class="zh">遇到"few-shot 学习"外壳的比赛，先查是否存在生成器/参考实现能把学习退化成编译 —— 最大的杠杆。</span></li>
+        <li><span class="en">Treat any minimization contest's scoring function as physics: measure the exact cost of each op / dtype / structure, draw a design ladder, and select by it — never by intuition.</span><span class="zh">把任何"最小化"比赛的评分函数当物理定律：实测每种算子/dtype/结构的确切成本，画出设计阶梯，据此选型 —— 绝不凭直觉。</span></li>
+        <li><span class="en">Distinguish fitting a function that passes the samples from implementing the rule that produces them. With an oracle available, always implement the true rule — the only thing robust to a private distribution.</span><span class="zh">区分"拟合出通过样本的函数"与"实现产生样本的真规则"。有 oracle 时永远实现真规则 —— 这是唯一对私有分布稳健的东西。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Status</span><span class="zh">状态</span></div>
+      <div class="val"><p class="limit"><span class="en">Net Kaggle gain over the strong baseline was small (task192 +1.0, task243 +0.19, several tasks robustified to net ~0). Two ORT platform bugs cost real time (group-Conv tiling; same-process session pollution — solved with subprocess evaluation). The int8/QLinearConv two-layer route (the correct solution for ~10 non-linearly-separable tasks) was designed but unfinished. The durable deliverable is the transferable technical note, written to carry over to ARC-AGI-2.</span><span class="zh">相对强基线的 Kaggle 净增益很小（task192 +1.0、task243 +0.19、若干题稳健化后净 ~0）。两个 ORT 平台 bug 耗费了实打实的时间（group-Conv 平铺；同进程 session 污染 —— 用子进程评测解决）。int8/QLinearConv 两层路线（约 10 个非线性可分题的正解）已设计未完成。持久的产物是那份可迁移的技术总结，为 ARC-AGI-2 准备。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">ONNX · onnxruntime</span><span class="chip">program synthesis</span><span class="chip">scorer reverse-engineering</span><span class="chip">integer-weight circuits</span><span class="chip">LP / torch fitting</span><span class="chip">subprocess batch eval</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+
+  <!-- 03 NEMOTRON -->
+  <div class="wrap"><article class="proj" id="p-nemotron">
+    <div class="proj-top">
+      <span class="proj-no">03</span><h3>Nemotron Post-training Pipeline</h3><span class="type">research</span>
+      <span class="repo">Python · A800 80GB · 2026-06-10 → 06-15</span>
+    </div>
+    <p class="glance"><span class="en">A reproducible post-training pipeline for NVIDIA's <b>Nemotron-3-Nano-30B</b> (MoE + Mamba–Transformer hybrid) reasoning model. The LoRA fine-tune failed; the most valuable output is a <b>fully root-caused failure</b> with a diagnosed cause, six postmortem documents, and a designed recovery route.</span><span class="zh">面向英伟达 <b>Nemotron-3-Nano-30B</b>（MoE + Mamba–Transformer 混合）推理模型的可复现后训练流水线。LoRA 微调失败；最有价值的产物是一次<b>被彻底归因的失败</b> —— 诊断出根因、六份事后分析、以及设计好的恢复路线。</span></p>
+    <div class="meta">
+      <span class="m"><b>baseline</b>rule-based solver EM 0.7516 (100% format)</span>
+      <span class="m"><b>infra</b>30B MoE in 4-bit on one GPU (40 GB)</span>
+      <span class="m"><b>outcome</b>SFT loss 0.33, generation collapsed to EM 0%</span>
+    </div>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Objective</span><span class="zh">目标</span></div>
+      <div class="val first"><p><span class="en">Post-train a 30B reasoning model to produce boxed CoT answers in the competition format, via a rule-teacher → CoT-SFT → preference-learning pipeline, on a single cloud GPU.</span><span class="zh">在单卡云 GPU 上，通过"规则 teacher → CoT-SFT → 偏好学习"的流水线，把一个 30B 推理模型后训练成能产出符合比赛格式的 boxed CoT 答案。</span></p></div>
+
+      <div class="lbl"><span class="en">What I built</span><span class="zh">做了什么</span></div>
+      <div class="val"><ul>
+        <li><span class="en">A deterministic rule-based solver as teacher (EM 0.7516, 100% format) — clean distillation labels instead of noisy model outputs.</span><span class="zh">确定性规则求解器作为 teacher（EM 0.7516、格式 100%）—— 用干净蒸馏标签替代有噪声的模型输出。</span></li>
+        <li><span class="en">Loaded the 30B MoE in 4-bit on one GPU; found and monkey-patched a <code>cache_position=None</code> bug in the Nemotron-H integration; wrote a masked SFT collator (loss on response tokens only).</span><span class="zh">单卡 4-bit 加载 30B MoE；发现并 monkey-patch 了 Nemotron-H 集成中的 <code>cache_position=None</code> bug；实现只对回复 token 计损失的 masked SFT collator。</span></li>
+        <li><span class="en">Multi-dimensional reward shaping (correctness + format + reasoning + length) with automatic preference-pair construction for GRPO/DPO.</span><span class="zh">多维奖励塑形（正确性 + 格式 + 推理 + 长度），并为 GRPO/DPO 自动构建偏好对。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Failure & diagnosis</span><span class="zh">失败与诊断</span></div>
+      <div class="val"><p><span class="en">SFT loss converged to 0.33, but autoregressive generation collapsed into repetition (EM 0%). Root cause: a teacher-forcing / generation mismatch in the Unsloth + hybrid-architecture path. NeMo-RL integration was abandoned for environment complexity (CUDA13 / mcore).</span><span class="zh">SFT loss 收敛到 0.33，但自回归生成崩溃成重复文本（EM 0%）。根因：Unsloth 与混合架构路径上 teacher-forcing 与生成的不一致。NeMo-RL 集成因环境复杂度（CUDA13 / mcore）放弃。</span></p></div>
+
+      <div class="lbl"><span class="en">Lessons</span><span class="zh">教训</span></div>
+      <div class="val"><p><span class="en">Six postmortem documents; a designed recovery route (native PEFT distillation with forced reasoning prefixes and a post-trained teacher). The permanent process rule I took away: never launch a 500-step run before sanity-checking the full train→generate loop on 5 samples / 50 steps.</span><span class="zh">六份事后分析；设计好的恢复路线（native PEFT 蒸馏 + 强制推理前缀 + 用后训练的 teacher）。带走的永久流程规则：任何 500 步正式训练之前，先用 5 条样本 / 50 步跑通完整"训练→生成"回路。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">Transformers · PEFT · Unsloth · TRL</span><span class="chip">4-bit quantization</span><span class="chip">masked SFT collator</span><span class="chip">GRPO reward shaping</span><span class="chip">upstream bug patch</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+
+  <!-- 03 ORBIT WARS -->
+  <div class="wrap"><article class="proj" id="p-orbit">
+    <div class="proj-top">
+      <span class="proj-no">04</span><h3>Orbit Wars</h3><span class="type">research</span>
+      <span class="repo">Python · Kaggle env · 2026-06-18 → 06-22</span>
+    </div>
+    <p class="glance"><span class="en">A structured multi-agent game player for a Kaggle simulation. The substance is not the agent but the <b>evaluation methodology</b>: an interpreter-faithful world model, bilateral self-play, style-diverse opponent pools, and an honest study of why offline metrics failed to predict the live ladder. Named honestly as <b>heuristic search with rigorous evaluation, not deep RL</b>.</span><span class="zh">面向某 Kaggle 模拟赛的结构化多智能体博弈程序。真正的内容不是 agent 本身，而是<b>评估方法论</b>：与官方解释器逐函数一致的世界模型、双边自对弈、风格多样的对手池，以及对"离线指标为何无法预测线上排名"的诚实研究。诚实定性为<b>严格评估下的启发式搜索，而非深度强化学习</b>。</span></p>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Method</span><span class="zh">方法</span></div>
+      <div class="val first"><ul>
+        <li><span class="en">World model ported function-by-function from the official interpreter, verified by unit tests (rotation prediction error &lt; 0.5 units over 10 turns) — planning runs on real physics, not approximations.</span><span class="zh">世界模型从官方解释器逐函数移植，单元测试验证（10 回合旋转预测误差 &lt; 0.5 单位）—— 在真实物理上规划，而非近似。</span></li>
+        <li><span class="en">Evaluation harness most competitors skip: both-sides play to cancel positional bias, four opponent styles via config perturbation to avoid single-mirror overfitting, full round-robin Elo arenas.</span><span class="zh">多数参赛者跳过的评估装置：双边对调消除位置偏差、配置扰动生成四种对手风格避免对单一镜像过拟合、全轮循 Elo 竞技场。</span></li>
+        <li><span class="en">Coordinate-descent parameter search over the pooled opponents.</span><span class="zh">在对手池上做坐标下降参数搜索。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Key findings</span><span class="zh">关键发现</span></div>
+      <div class="val"><ul>
+        <li><span class="en">Parameter interaction: one setting scored −56 Elo in isolation but +108 when searched jointly — single-parameter ablation is misleading.</span><span class="zh">参数交互：某参数单独调 −56 Elo，联合搜索 +108 —— 单参数消融会误导。</span></li>
+        <li><span class="en">Offline / online validity gap: +108 Elo offline coincided with a <em>drop</em> on the live ladder. I documented the discrepancy and kept every rejected experiment in the codebase with its Elo delta, rather than reporting the flattering number.</span><span class="zh">离线/线上效度落差：离线 +108 Elo 却对应线上排名<em>下降</em>。我记录了这一落差，并把每个被否决的实验连同 Elo 变化保留在代码库里，而非只报好看的数字。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Conclusion</span><span class="zh">结论</span></div>
+      <div class="val"><p><span class="en">Parameter search plateaued around mid-ladder; breaking through needs new capability (lookahead / simultaneous-move search), not more tuning. The transferable lesson is about evaluation validity: an offline harness can be internally rigorous and still not predict the real objective.</span><span class="zh">参数搜索在中游平台期见顶；突破需要新能力（前瞻 / 同步走子搜索），而非继续调参。可迁移的教训关于评估效度：一个离线装置可以内部严谨，却仍然无法预测真实目标。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">interpreter-faithful physics</span><span class="chip">unit-tested world model</span><span class="chip">bilateral self-play Elo</span><span class="chip">4-style opponent pool</span><span class="chip">coordinate-descent search</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+</section>
+
+<!-- ========== B · SYSTEMS ========== -->
+<section style="padding-bottom:0">
+  <div class="wrap"><div class="sec-h"><span class="en">B · AI Systems & Architecture</span><span class="zh">B · AI 系统与架构</span></div></div>
+
+  <!-- 04 GEMMA4ALL -->
+  <div class="wrap"><article class="proj" id="p-gemma">
+    <div class="proj-top">
+      <span class="proj-no">05</span><h3>Gemma4all</h3><span class="type">system</span>
+      <span class="repo">TS · Python · Swift · Kotlin · 2026-05-16 → 07-07</span>
+    </div>
+    <p class="glance"><span class="en">A cross-device task system: submit a natural-language task on your phone; a routing engine decides which device (phone / desktop / cloud) executes it based on privacy, capability and load; execution hands off across devices with checkpoints; every state change is an immutable event. Built on four principles — <b>task-first, schema-first, control-plane-first, local-first</b>.</span><span class="zh">一个跨设备任务系统：在手机上提交自然语言任务；路由引擎根据隐私、能力与负载决定在哪台设备（手机/桌面/云）执行；执行过程带 checkpoint 跨设备接续；每次状态变更都是不可变事件。建立在四条原则上 —— <b>Task-first、Schema-first、控制面优先、本地优先</b>。</span></p>
+    <div class="meta">
+      <span class="m"><b>protocol</b>42 JSON Schemas · 7 protocol docs + ADRs</span>
+      <span class="m"><b>surface</b>5 codebases (TS/Py/Swift/Kotlin)</span>
+      <span class="m"><b>inference</b>LiteRT-LM on Metal GPU, 4–6s/task</span>
+    </div>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Architecture</span><span class="zh">架构</span></div>
+      <div class="val first"><p><span class="en">A TypeScript/Node control plane owns all state (SQLite, repository pattern, AJV validation at every boundary, 7 API route groups). A Python asyncio desktop runtime executes tools. Native hosts on iOS (SwiftUI), Android (Compose/Hilt) and macOS (menu-bar) discover each other over Bonjour. On-device inference via LiteRT-LM with Metal GPU dispatch (one engine, per-task conversations).</span><span class="zh">TypeScript/Node 控制面拥有全部状态（SQLite、Repository 模式、每个边界都有 AJV 校验、7 组 API 路由）。Python asyncio 桌面运行时执行工具。iOS（SwiftUI）、Android（Compose/Hilt）、macOS（菜单栏）原生宿主通过 Bonjour 互相发现。端侧推理基于 LiteRT-LM 的 Metal GPU 调度（单引擎、按任务开会话）。</span></p></div>
+
+      <div class="lbl"><span class="en">Data model</span><span class="zh">数据模型</span></div>
+      <div class="val"><p><span class="en">Three-layer object model: Device → Task → Run, with Event as the only state-change entry point. All types are generated from 42 JSON Schemas (Draft 2020-12) — zero hand-written DTOs across four languages. A HandoffPayload carries checkpoint + tool history + context with idempotency keys, so a task started on the phone finishes on the Mac.</span><span class="zh">三层对象模型：Device → Task → Run，Event 是唯一的状态变更入口。所有类型从 42 份 JSON Schema（Draft 2020-12）生成 —— 四种语言之间零手写 DTO。HandoffPayload 携带 checkpoint + 工具历史 + 上下文并带幂等键，使手机上开始的任务能在 Mac 上完成。</span></p></div>
+
+      <div class="lbl"><span class="en">Core mechanisms</span><span class="zh">核心机制</span></div>
+      <div class="val"><ul>
+        <li><span class="en">Event sourcing — Task/Run state can only change via <code>EventService.processStateTransition</code>; no route handler mutates state directly, giving a complete, replayable audit history.</span><span class="zh">事件溯源 —— Task/Run 状态只能经 <code>EventService.processStateTransition</code> 变更；任何路由处理器不得直接改状态，从而得到完整、可回放的审计历史。</span></li>
+        <li><span class="en">Routing engine — hard-filters on privacy boundary (local_only / private_lan / cloud_ok), soft-ranks on device state; the same task can legally run in three places and the choice is explained via events.</span><span class="zh">路由引擎 —— 隐私边界（local_only / private_lan / cloud_ok）做硬过滤、设备状态做软排序；同一任务可合法地跑在三处，选择通过事件流解释。</span></li>
+        <li><span class="en">Fail-closed security (added as a dedicated hardening phase) — central security policy, catastrophic-pattern screening, human-in-the-loop approval gate that denies when no approval UI is reachable.</span><span class="zh">Fail-closed 安全（作为专门的加固阶段加入）—— 中央安全策略、灾难性命令模式筛查、人在回路审批门；审批 UI 不可达时拒绝执行。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Design rationale</span><span class="zh">设计取舍</span></div>
+      <div class="val"><p><span class="en">Protocol-first because one spec driving four languages removes most integration friction for a solo builder, and an assistant that touches your files/calendar must be auditable, fail closed, and keep data local by default. An ADR records why JSON Schema was chosen over Zod / Protobuf / OpenAPI (multi-language + LLM-readable + mature type generation).</span><span class="zh">协议优先，因为一份规范驱动四种语言能为独立开发者消除大部分联调摩擦；而一个会碰你文件/日历的助手必须可审计、失败即关闭、默认数据不出本地。一份 ADR 记录了为何选 JSON Schema 而非 Zod / Protobuf / OpenAPI（多语言 + LLM 可读 + 类型生成工具链成熟）。</span></p></div>
+
+      <div class="lbl"><span class="en">Status</span><span class="zh">状态</span></div>
+      <div class="val"><p class="limit"><span class="en">Production-shaped two-runtime system (mobile + desktop) end-to-end in ~1 month; the cloud runtime and web console are specified but stubbed. Android is thinner than iOS; TS unit-test coverage lags the Python side (16 tests); event delivery is polling (WebSocket is v2).</span><span class="zh">约 1 个月内完成端到端的"双运行时"生产形态系统（手机 + 桌面）；云端运行时与 Web 控制台有规范但为占位。Android 端比 iOS 薄；TS 单测覆盖落后于 Python 侧（16 个测试）；事件推送为轮询（WebSocket 排 v2）。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">TypeScript/Node · Express</span><span class="chip">Python asyncio</span><span class="chip">JSON Schema 2020-12 · AJV</span><span class="chip">LiteRT-LM · Metal GPU</span><span class="chip">SwiftUI · Compose · Bonjour</span><span class="chip">SQLite · event sourcing</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+
+  <!-- 05 VOICEINPUT -->
+  <div class="wrap"><article class="proj" id="p-voice">
+    <div class="proj-top">
+      <span class="proj-no">06</span><h3>VoiceInput</h3><span class="type">system</span>
+      <span class="repo">Swift · macOS 14+ · 2026-05-23</span>
+    </div>
+    <p class="glance"><span class="en">A macOS menu-bar utility: hold <code>Fn</code>, speak, release — real-time speech is transcribed and injected into any text field. <b>Pure Swift, zero third-party dependencies</b>, with latency engineering that makes dictation feel instant.</span><span class="zh">一个 macOS 菜单栏工具：按住 <code>Fn</code> 说话、松开 —— 实时语音被转写并注入任何文本框。<b>纯 Swift，零第三方依赖</b>，通过延迟工程让听写"即说即得"。</span></p>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Core mechanisms</span><span class="zh">核心机制</span></div>
+      <div class="val first"><ul>
+        <li><span class="en">Global <code>Fn</code> monitoring via CGEventTap with an NSEvent fallback for OS-version resilience; Accessibility + Microphone + AppleEvents permission handling.</span><span class="zh">通过 CGEventTap 全局监听 <code>Fn</code>，并以 NSEvent 降级保证系统版本兼容；处理 Accessibility + 麦克风 + AppleEvents 权限。</span></li>
+        <li><span class="en">AVAudioEngine capture with Float32 → PCM-16 linear-interpolation resampling (44.1/48k → 16k); streaming over a WebSocket implementing an OpenAI-Realtime-compatible protocol (DashScope Qwen3 ASR).</span><span class="zh">AVAudioEngine 采集，Float32 → PCM-16 线性插值重采样（44.1/48k → 16k）；通过实现 OpenAI-Realtime 兼容协议的 WebSocket 流式传输（DashScope Qwen3 ASR）。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Design decisions</span><span class="zh">设计决策</span></div>
+      <div class="val"><ul>
+        <li><span class="en">Pre-roll buffering: recording starts the instant <code>Fn</code> goes down and is cached while the socket connects, then flushed — collapsing perceived latency to well under typical connect time.</span><span class="zh">预录制缓冲：<code>Fn</code> 按下瞬间即开始录音并缓存，socket 连接期间缓存、连上后冲刷 —— 把感知延迟压到远低于典型连接耗时。</span></li>
+        <li><span class="en">Seamless Chinese-IME handling: detect an active Chinese input method, switch to ABC for injection, restore afterwards — solving a real, unsolved-by-default macOS pain point. 7 languages.</span><span class="zh">中文输入法无缝处理：检测到中文输入法时切到 ABC 注入、完成后恢复 —— 解决 macOS 上一个默认无解的真实痛点。支持 7 种语言。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Status</span><span class="zh">状态</span></div>
+      <div class="val"><p class="limit"><span class="en">Usable (Makefile one-command build, diagnostic scripts). Cloud ASR, so it needs network and a paid API key; macOS-only; young project without longitudinal users.</span><span class="zh">可用（Makefile 一条命令构建，附诊断脚本）。云端 ASR，需要网络与付费 API key；仅 macOS；项目较新，尚无长期用户数据。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">Pure Swift · zero deps</span><span class="chip">CGEventTap + NSEvent</span><span class="chip">AVAudioEngine resampling</span><span class="chip">WebSocket streaming ASR</span><span class="chip">menu-bar app</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+</section>
+
+<!-- ========== C · APPLIED ML ========== -->
+<section style="padding-bottom:0">
+  <div class="wrap"><div class="sec-h"><span class="en">C · Applied ML & Decision Systems</span><span class="zh">C · 应用 ML 与决策系统</span></div></div>
+
+  <!-- 06 TRIAGEGEIST -->
+  <div class="wrap"><article class="proj" id="p-triage">
+    <div class="proj-top">
+      <span class="proj-no">07</span><h3>TriageGeist</h3><span class="type">applied-ml</span>
+      <span class="repo">Python · 2026-06-19 → 06-21</span>
+    </div>
+    <p class="glance"><span class="en">An emergency-department triage decision stack. Mid-competition I found that <b>99.7% of chief-complaint phrases mapped monotonically to a single triage label</b> — the dataset rewarded a lookup table, not a model. I documented the leak, declined to exploit it, and instead built a text-blind physiological model wrapped in calibration, conformal uncertainty, a fairness audit, and an operations console. Three days.</span><span class="zh">一个急诊分诊决策栈。比赛中途我发现 <b>99.7% 的主诉短语单调映射到唯一分诊等级</b> —— 数据集奖励的是查表而非建模。我记录了泄漏、拒绝利用它，转而构建"文本盲"的生理学模型，并包上校准、conformal 不确定性、公平性审计和运营控制台。用时三天。</span></p>
+    <div class="meta">
+      <span class="m"><b>model</b>text-blind multi-task GBDT, QWK 0.9287</span>
+      <span class="m"><b>calibration</b>ECE −46% (isotonic)</span>
+      <span class="m"><b>tests</b>12/12 (incl. leakage guards)</span>
+    </div>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Data & features</span><span class="zh">数据与特征</span></div>
+      <div class="val first"><p><span class="en">Leakage-safe 4-table joins at patient level; physiology-grounded features (NEWS2, shock index, GCS, missingness indicators) through a single <code>transform()</code> shared by training and serving — no train/serve skew by construction.</span><span class="zh">患者级防泄漏四表联接；以生理学为根基的特征（NEWS2、休克指数、GCS、缺失指示器），训练与在线推理共用同一个 <code>transform()</code> —— 从构造上杜绝 train/serve 偏移。</span></p></div>
+
+      <div class="lbl"><span class="en">Decision stack</span><span class="zh">决策栈</span></div>
+      <div class="val"><ul>
+        <li><span class="en">Model — multi-task GBDT (acuity + admission + length-of-stay), QWK 0.9287; threshold tuning lifts acuity-4 recall without hurting critical recall.</span><span class="zh">模型 —— 多任务 GBDT（分诊等级 + 住院 + 停留时长），QWK 0.9287；阈值调优提升 acuity-4 召回而不损危重召回。</span></li>
+        <li><span class="en">Governance — isotonic calibration (ECE −46%); distribution-free conformal sets that defer ~89% of cases to human review (itself evidence the labels are physiologically underdetermined); entropy-ranked review queues.</span><span class="zh">治理 —— isotonic 校准（ECE −46%）；分布自由的 conformal 集合将约 89% 病例推给人工复核（这本身就是标签在生理学上欠定的证据）；按熵排序的复核队列。</span></li>
+        <li><span class="en">Fairness — bootstrap 95% CIs (not point estimates) surfacing a 3× undertriage gap for Estonian speakers and a QWK collapse (0.78) when pain scores are missing, flagged as data-quality red flags rather than tuned away.</span><span class="zh">公平性 —— bootstrap 95% 置信区间（而非点估计）揭示爱沙尼亚语人群 3 倍欠分诊差距、疼痛评分缺失时 QWK 崩到 0.78，并标记为数据质量红旗而非调参掩盖。</span></li>
+        <li><span class="en">Operations — a clinician-readable priority equation (transparent weighted terms, not a black box), resource buckets, ED-load forecasts, and a 4-view dashboard (Queue / Patient / Ops / Audit) with human-override logging.</span><span class="zh">运营 —— 医生可读的优先级方程（透明加权项，非黑盒）、资源桶、急诊负载预测，以及带人工覆盖日志的四视图仪表板（队列/患者/运营/审计）。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Judgment</span><span class="zh">判断</span></div>
+      <div class="val"><p><span class="en">A triage system trained on a complaint lookup table would be dangerous in a real ED; what a hospital needs is trustworthy uncertainty — which ~10% can be safely auto-triaged (0.16% undertriage in that slice) and which must reach a nurse. I also tried a physiology "safety-net" rule that lowered QWK and reported it anyway, because it was evidence about the labels, not a failure to hide.</span><span class="zh">靠主诉查表训练的分诊系统放进真实急诊室是危险的；医院需要的是可信的不确定性 —— 哪约 10% 可安全自动分诊（该切片欠分诊率仅 0.16%）、哪些必须交给护士。我还试过一条"生理学安全网"规则，结果降低了 QWK，却照样报告 —— 因为那是关于标签的证据，而非需要藏起来的失败。</span></p></div>
+
+      <div class="lbl"><span class="en">Limitations</span><span class="zh">局限</span></div>
+      <div class="val"><p class="limit"><span class="en">Synthetic competition data — no prospective or multi-site validation (TRL 3–4, explicitly not a medical device). Fairness gaps are quantified but unresolved; acuity-4 remains the hardest class; priority weights are hand-tuned.</span><span class="zh">合成比赛数据 —— 无前瞻或多中心验证（TRL 3–4，明确不是医疗器械）。公平性差距被量化但未解决；acuity-4 仍是最难类别；优先级权重为手工调。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">LightGBM · multi-task</span><span class="chip">isotonic calibration</span><span class="chip">conformal prediction (APS)</span><span class="chip">bootstrap fairness CIs</span><span class="chip">shared transform()</span><span class="chip">4-view dashboard</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+
+  <!-- 07 MAZE CRAWLER -->
+  <div class="wrap"><article class="proj" id="p-maze">
+    <div class="proj-top">
+      <span class="proj-no">08</span><h3>Maze Crawler</h3><span class="type">applied-ml</span>
+      <span class="repo">Python · Kaggle env · 2026-06-16</span>
+    </div>
+    <p class="glance"><span class="en">A layered multi-unit strategy agent for a Kaggle competition — <b>parser → world state → BFS planner → role policies → conflict resolver</b> — built, evaluated, and put under CI in a single day.</span><span class="zh">面向某 Kaggle 竞赛的分层多单位策略 agent —— <b>解析 → 世界状态 → BFS 规划 → 角色策略 → 冲突解算</b> —— 一天内完成构建、评估并纳入 CI。</span></p>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Architecture</span><span class="zh">架构</span></div>
+      <div class="val first"><ul>
+        <li><span class="en">Single-responsibility layered modules; every unit proposes a move, and a 3-round iterative resolver detects collisions, lets priority win, and re-plans losers — legality guaranteed by construction.</span><span class="zh">单一职责的分层模块；每个单位提出行动，三轮迭代解算器检测冲突、让高优先级胜出、为落选者重规划 —— 从构造上保证合法性。</span></li>
+        <li><span class="en">All 77 strategy thresholds centralized in one config module — the whole policy is tunable without touching logic; phase switching (opening / economy / survival) driven by turn count and map pressure.</span><span class="zh">77 个策略阈值全部集中在一个配置模块 —— 整套策略可调而无需碰逻辑；按回合数与地图压力驱动开局/经济/生存三阶段切换。</span></li>
+        <li><span class="en">Cross-turn memory of tiles, mines and enemy tracks reduces re-exploration under fog of war.</span><span class="zh">跨回合记忆瓦片、矿点与敌方轨迹，减少雾战下的重复探索。</span></li>
+      </ul></div>
+      <div class="lbl"><span class="en">Result</span><span class="zh">结果</span></div>
+      <div class="val"><p><span class="en">16-seed evaluation: mean reward 168.5 vs 0 for the random baseline. Shipped with a Makefile, batch-eval scripts and GitHub Actions CI. Honestly a v1 heuristic baseline — parameters hand-tuned rather than systematically searched; the test suite is light.</span><span class="zh">16 种子评估：平均奖励 168.5，随机基线为 0。附 Makefile、批量评估脚本与 GitHub Actions CI。诚实地说是 v1 启发式基线 —— 参数靠经验调优而非系统搜索；测试较轻量。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">BFS planning under fog</span><span class="chip">3-round conflict resolution</span><span class="chip">77 centralized params</span><span class="chip">cross-turn memory</span><span class="chip">Makefile + CI</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+</section>
+
+<!-- ========== D · PRODUCTS ========== -->
+<section style="padding-bottom:0">
+  <div class="wrap"><div class="sec-h"><span class="en">D · AI Products & Tools</span><span class="zh">D · AI 产品与工具</span></div></div>
+
+  <!-- 08 AI SHOWRUNNER -->
+  <div class="wrap"><article class="proj" id="p-showrunner">
+    <div class="proj-top">
+      <span class="proj-no">09</span><h3>AI Showrunner</h3><span class="type">product</span>
+      <span class="repo">Python · FastAPI · Qwen · 2026-06 → 07-06</span>
+    </div>
+    <p class="glance"><span class="en">An end-to-end AI production pipeline for vertical short films: one sentence in, a subtitled 9:16 video out — <b>script → storyboard → per-shot video generation → a vision-model critic that reviews each shot and drives targeted retries → multi-language subtitles</b>.</span><span class="zh">面向竖屏短剧的端到端 AI 制片流水线：输入一句话，输出带字幕的 9:16 视频 —— <b>剧本 → 分镜 → 逐镜头视频生成 → 视觉模型评审每个镜头并驱动定向重试 → 多语言字幕</b>。</span></p>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Positioning</span><span class="zh">定位</span></div>
+      <div class="val first"><p><span class="en">A virtual-production workflow for short-drama studios (TikTok / Reels / 小红书): compress the script-to-cut cycle from days to hours, keep characters consistent across shots, and localize to multiple languages from one script.</span><span class="zh">面向短剧工作室（TikTok / Reels / 小红书）的虚拟制片工作流：把"剧本到成片"周期从数天压到数小时、保持角色跨镜头一致、并从一份剧本本地化到多语言。</span></p></div>
+
+      <div class="lbl"><span class="en">How it's built</span><span class="zh">如何构建</span></div>
+      <div class="val"><ul>
+        <li><span class="en">A closed-loop critic, not a one-shot pipeline: each generated clip is sampled at 3 frames and scored by a VL model on narrative alignment, character consistency and technical quality; failures produce <em>targeted</em> fix-prompts (e.g. "face blurred → add sharpness cues") within a retry budget.</span><span class="zh">闭环评审而非一次性流水线：每个片段抽 3 帧，由 VL 模型按叙事契合、角色一致性、技术质量打分；不合格生成<em>定向</em>修复提示词（如"脸部模糊 → 加清晰度关键词"），在重试预算内进行。</span></li>
+        <li><span class="en">Character consistency across shots: canonical reference portraits locked into a library and injected as image-to-video first frames (verified consistency 9–10).</span><span class="zh">跨镜头角色一致性：规范参考肖像锁入角色库，作为图生视频首帧注入（一致性实测 9–10）。</span></li>
+        <li><span class="en">Every stage is a replayable Pydantic JSON artifact (story bible → shot specs → QA reports → edit list); human-in-the-loop gates at outline / storyboard / final cut; per-run cost ceilings.</span><span class="zh">每个阶段都是可回放的 Pydantic JSON 产物（故事圣经 → 镜头规格 → QA 报告 → 剪辑表）；在大纲/分镜/成片设人工审批门；每次运行有成本上限。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Status</span><span class="zh">状态</span></div>
+      <div class="val"><p class="limit"><span class="en">6 complete end-to-end films produced (incl. a 26-second short). FastAPI dashboard with live event stream. TTS/lip-sync designed but unbuilt; the final hackathon run hit API-quota limits; cloud-deploy scripts written but not field-verified.</span><span class="zh">产出 6 部端到端成片（含一部 26 秒短剧）。带实时事件流的 FastAPI 仪表板。TTS/口型同步已设计未实现；黑客松最后一轮撞上 API 配额限制；云部署脚本已写好但未实地验证。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">FastAPI · asyncio</span><span class="chip">Pydantic JSON artifacts</span><span class="chip">Qwen-Max planner</span><span class="chip">Qwen-VL critic</span><span class="chip">I2V/T2V generation</span><span class="chip">ffmpeg · multi-lang SRT</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+
+  <!-- 09 FRENCH COMPANION -->
+  <div class="wrap"><article class="proj" id="p-french">
+    <div class="proj-top">
+      <span class="proj-no">10</span><h3>Offline French Companion</h3><span class="type">product</span>
+      <span class="repo">WebLLM · vanilla JS · PWA</span>
+    </div>
+    <p class="glance"><span class="en">A full French-learning assistant that runs <b>entirely inside the browser</b> — LLM dictionary, bilingual speech input, photo OCR, and spoken pronunciation — with no server, no API, and no network required.</span><span class="zh">一个<b>完全在浏览器内运行</b>的法语学习助手 —— LLM 词典、双语语音输入、拍照 OCR、真人朗读 —— 无服务器、无 API、无需网络。</span></p>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Positioning</span><span class="zh">定位</span></div>
+      <div class="val first"><p><span class="en">Privacy-first, offline language learning: the model <em>is</em> the app. A learner picks a model tier once, then looks up words, dictates, or photographs a menu — data never leaves the device.</span><span class="zh">隐私优先的离线语言学习："模型即应用"。学习者一次性选择模型档位，然后查词、听写或拍下菜单 —— 数据永不离开设备。</span></p></div>
+
+      <div class="lbl"><span class="en">How it's built</span><span class="zh">如何构建</span></div>
+      <div class="val"><ul>
+        <li><span class="en">WebLLM runs a quantized Qwen (0.5B / 1.5B / 3B tiers, 350MB–1.7GB); a &lt;2KB system prompt plus JSON-schema-constrained output turns a small local model into a structured dictionary (IPA, senses, conjugation, etymology, quotations), with graceful fallback to free text on parse failure.</span><span class="zh">WebLLM 运行量化 Qwen（0.5B/1.5B/3B 档，350MB–1.7GB）；不到 2KB 的系统提示词加 JSON schema 约束输出，把小的本地模型变成结构化词典（音标、义项、变位、词源、名言），解析失败时优雅降级为自由文本。</span></li>
+        <li><span class="en">Three input modalities converge on one inference path: typed text, long-press bilingual speech (Whisper-tiny on WebGPU), and photo OCR (Tesseract.js) of menus and signs; Web Speech API for pronunciation.</span><span class="zh">三种输入模态汇聚到同一推理路径：键入文本、长按双语语音（WebGPU 上的 Whisper-tiny）、菜单路牌拍照 OCR（Tesseract.js）；朗读用 Web Speech API。</span></li>
+        <li><span class="en">A Service-Worker cache strategy engineered around GB-scale weights: network-first for app code, cache-first for immutable CDN model shards, deferring to the engine's own cache to avoid double-storing gigabytes.</span><span class="zh">围绕 GB 级权重设计的 Service Worker 缓存策略：应用代码网络优先、不可变 CDN 模型分片缓存优先，并让推理引擎自管权重缓存以避免重复占用数 GB。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Status</span><span class="zh">状态</span></div>
+      <div class="val"><p class="limit"><span class="en">Production-quality PWA (installable, works offline). 3B-tier entries are occasionally imperfect (cross-check serious queries); WebGPU browser coverage is still maturing; the first download needs patience on Wi-Fi.</span><span class="zh">生产级 PWA（可安装、离线可用）。3B 档词条偶有瑕疵（重要查询建议交叉核对）；WebGPU 浏览器覆盖仍在演进；首次下载需在 Wi-Fi 下耐心等待。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">WebLLM · quantized Qwen</span><span class="chip">Whisper-tiny · WebGPU</span><span class="chip">Tesseract.js OCR</span><span class="chip">Web Speech TTS</span><span class="chip">PWA · Service Worker</span><span class="chip">vanilla JS</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+
+  <!-- 10 ATELIER POST -->
+  <div class="wrap"><article class="proj" id="p-atelier">
+    <div class="proj-top">
+      <span class="proj-no">11</span><h3>Atelier Post</h3><span class="type">product · shipped</span>
+      <span class="repo">vanilla JS · Capacitor · 2026-06-09 → 07-05</span>
+    </div>
+    <p class="glance"><span class="en">A <b>shipped</b> tool that turns artists' work into polished Instagram content — single posts, carousels, and video stories — from <b>one vanilla-JS codebase running as website, PWA and iOS app</b>. Live on the web today.</span><span class="zh">一个<b>已上线</b>的工具，把艺术家的作品变成精致的 Instagram 内容 —— 单帖、系列合集、视频故事 —— 由<b>一套原生 JS 代码同时作为网站、PWA 和 iOS 应用运行</b>。现已在线。</span></p>
+    <div class="rows">
+      <div class="lbl first"><span class="en">Positioning</span><span class="zh">定位</span></div>
+      <div class="val first"><p><span class="en">A privacy-first, backend-free posting studio for artists and photographers: upload → adjust → lay out → export → share, entirely local, with no tracking and no upload.</span><span class="zh">面向艺术家与摄影师的、隐私优先且无后端的发布工作室：上传 → 调整 → 排版 → 导出 → 分享，全程本地，不追踪、不上传。</span></p></div>
+
+      <div class="lbl"><span class="en">How it's built</span><span class="zh">如何构建</span></div>
+      <div class="val"><ul>
+        <li><span class="en">A hand-built Canvas 2D engine: perspective (keystone) correction via triangular-mesh warping, 5-layer photo adjustment, Ken Burns motion for video slideshows, and 3×3 mural splitting exported in Instagram upload order.</span><span class="zh">手写的 Canvas 2D 引擎：三角网格变形实现透视（梯形）校正、五层图像调整、视频幻灯片的 Ken Burns 运镜、按 Instagram 上传顺序导出的 3×3 壁画分割。</span></li>
+        <li><span class="en">Local-first storage in IndexedDB; one codebase spans web, PWA and iOS (WebView) via Capacitor, with no platform-specific hacks; 8 UI languages.</span><span class="zh">IndexedDB 本地存储；一套代码经 Capacitor 覆盖 Web、PWA 与 iOS（WebView），无平台特定 hack；8 种界面语言。</span></li>
+        <li><span class="en">Three workbenches — Artwork / Series / Story. I also built an AI caption feature, evaluated it, and removed it — deciding what to cut is part of product judgment.</span><span class="zh">三个工作台 —— 单幅 / 系列 / 故事。我还做过 AI 文案功能，评估后主动移除 —— 知道砍什么也是产品判断力的一部分。</span></li>
+      </ul></div>
+
+      <div class="lbl"><span class="en">Status</span><span class="zh">状态</span></div>
+      <div class="val"><p class="limit"><span class="en">Live on GitHub Pages (<a href="https://yanjin-ai.github.io/artworktopost/" target="_blank" rel="noopener">artworktopost</a>); 29 commits over 27 days; iOS build with App Store assets prepared. The single-file codebase (~1.6k lines JS) is nearing its maintainability boundary; no automated tests; monetization gates scaffolded but dormant.</span><span class="zh">已部署在 GitHub Pages（<a href="https://yanjin-ai.github.io/artworktopost/" target="_blank" rel="noopener">artworktopost</a>）；27 天 29 次提交；iOS 构建完成并备齐 App Store 素材。单文件代码库（约 1.6k 行 JS）接近可维护性边界；无自动化测试；付费墙框架已搭但未启用。</span></p></div>
+    </div>
+    <div class="chips"><span class="chip">vanilla JS · single file</span><span class="chip">Canvas 2D engine</span><span class="chip">IndexedDB · local-first</span><span class="chip">Capacitor iOS</span><span class="chip">GitHub Pages · live</span></div>
+    <div class="backlink"><a href="#index">↑ <span class="en">Index</span><span class="zh">目录</span></a></div>
+  </article></div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-h"><span class="en">Professional Experience</span><span class="zh">职业经历</span></div>
+    <div class="sec-sub"><span class="en">Markets & corporate banking, then product & growth.</span><span class="zh">金融市场与对公银行，及产品与增长。</span></div>
+
+    <div class="job">
+      <div class="jt"><span class="org">BNP Paribas <span class="pos">— <span class="en">Global Corporate Banking Intern</span><span class="zh">对公银行部实习生</span></span></span><span class="jmeta"><span class="en">Paris · Dec 2025 – Present</span><span class="zh">巴黎 · 2025.12 – 至今</span></span></div>
+      <ul>
+        <li><span class="en">Structured tailor-made financial solutions with coverage, product, legal and risk teams for international clients, focused on transactional services (cash management, FX hedging, short-term financing), delivering competitive offers under tight deadlines alongside front-office sales and traders.</span><span class="zh">与客户覆盖、产品、法务及风险团队协作，为国际客户设计量身定制的金融解决方案，聚焦交易型服务（现金管理、外汇对冲、短期融资），在紧张周期内与前台销售及交易员一同交付有竞争力的报价。</span></li>
+        <li><span class="en">Built and presented pitchbooks for high-value clients, combining market-trend analysis with pricing scenarios and cross-border liquidity solutions; contributed to commercial strategy and product placement for global corporate clients.</span><span class="zh">为高价值客户制作并演示投行推介材料（pitchbook），结合市场趋势分析、定价情景与跨境流动性方案；参与面向全球企业客户的商业策略与产品落位。</span></li>
+        <li><span class="en">Assisted in executing complex deals: performed country-risk analysis (notably in emerging markets), participated in legal and credit-term negotiations, and optimized risk-mitigation tools (guarantees, supply-chain finance).</span><span class="zh">协助复杂交易的执行：进行国别风险分析（尤其新兴市场）、参与法律与授信条款谈判、优化风险缓释工具（担保、供应链金融）。</span></li>
+        <li><span class="en">Worked closely with Relationship Managers to identify and pitch cross-selling opportunities (FX, investment solutions, structured cash products) and ran seasonal client analysis focused on the TMT and Electronics sectors.</span><span class="zh">与客户经理（RM）紧密协作，识别并推介交叉销售机会（外汇、投资方案、结构性现金产品），并针对 TMT 与电子行业进行季度客户分析。</span></li>
+        <li><span class="en">Supported front-office operational efficiency by automating reporting dashboards and monitoring key client flows, in regular contact with middle and back offices.</span><span class="zh">通过自动化报告看板与监控关键客户资金流支持前台运营效率，并与中后台保持常态沟通。</span></li>
+        <li><span class="en">Helped land internal AI tooling — built RAG knowledge bases on Open WebUI and Dify to improve client-response efficiency — for a book including CATL, BYD, Alipay, Midea, TCL, ANTA and JD.com.</span><span class="zh">协助推动 AI 工具在行内落地 —— 在 Open WebUI 与 Dify 上搭建 RAG 知识库以提升客户答复效率 —— 服务客户包括宁德时代、比亚迪、支付宝、美的、TCL、安踏、京东等。</span></li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="jt"><span class="org">HSBC <span class="pos">— <span class="en">Global Markets, Liquidity & Investment Intern</span><span class="zh">全球市场部 流动性与投资实习生</span></span></span><span class="jmeta"><span class="en">Paris · Jun – Nov 2024</span><span class="zh">巴黎 · 2024.06 – 2024.11</span></span></div>
+      <ul>
+        <li><span class="en"><b>Treasury / macro / rates analysis</b> — monitored central-bank rates (Fed / ECB / BoE) and money markets to optimize short-term EMEA portfolios; worked with treasury on liquidity allocation under LCR/NSFR constraints and curve positioning.</span><span class="zh"><b>资金 / 宏观 / 利率分析</b> —— 跟踪央行利率（美联储/欧洲央行/英格兰银行）与货币市场以优化 EMEA 短期组合；与资金部协作，在 LCR/NSFR 约束下进行流动性配置与曲线布局。</span></li>
+        <li><span class="en"><b>Pricing & modeling</b> — developed dynamic pricing models for wholesale deposits (benchmark calibration, internal treasury-curve integration); collaborated with trading desks.</span><span class="zh"><b>定价与建模</b> —— 为批发存款开发动态定价模型（基准校准、内部资金曲线整合）；与交易台协作。</span></li>
+        <li><span class="en"><b>Portfolio optimization</b> — enhanced EMEA short-term rate portfolios using macro signals and liquidity constraints; built automated VBA/Excel tools tracking rate moves and pricing gaps in real time to identify arbitrage.</span><span class="zh"><b>组合优化</b> —— 结合宏观信号与流动性约束优化 EMEA 短期利率组合；构建 VBA/Excel 自动化工具实时跟踪利率变动与定价缺口以识别套利机会。</span></li>
+        <li><span class="en"><b>Governance & reporting</b> — managed money-market statistical reporting; contributed to the ALCM committee (gap-risk analysis, funding-cost optimization, sensitive-position tracking); automated reports via VBA.</span><span class="zh"><b>治理与报告</b> —— 负责货币市场统计报告；参与 ALCM 委员会（缺口风险分析、融资成本优化、敏感头寸跟踪）；用 VBA 自动化报告。</span></li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="jt"><span class="org">TikTok <span class="pos">— <span class="en">Growth Strategy Intern</span><span class="zh">增长策略实习生</span></span></span><span class="jmeta"><span class="en">Beijing · Feb – May 2023</span><span class="zh">北京 · 2023.02 – 2023.05</span></span></div>
+      <ul>
+        <li><span class="en">Contributed to 10+ strategic projects, increasing SaaS/AI market share by 23% through market-trend and competitive-landscape analysis.</span><span class="zh">参与 10+ 战略项目，通过市场趋势与竞争格局分析，使 SaaS/AI 业务市场份额提升 23%。</span></li>
+        <li><span class="en">Analyzed financial and operational data in SQL and Excel, generating weekly reports for a 20+ member team to enable optimal resource allocation and improve ROI.</span><span class="zh">用 SQL 与 Excel 分析财务与运营数据，为 20+ 人团队产出周报，支持最优资源配置并提升 ROI。</span></li>
+        <li><span class="en">Led process optimization — created new online channels with design, product and IT teams, raising user conversion by 13% in one month.</span><span class="zh">主导流程优化 —— 与设计、产品、IT 团队合作开辟新线上渠道，一个月内将用户转化率提升 13%。</span></li>
+        <li><span class="en">Coordinated cross-functional project management to deliver strategic initiatives aligned with business objectives.</span><span class="zh">统筹跨职能项目管理，交付与业务目标一致的战略举措。</span></li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="jt"><span class="org">Uber China · DiDi <span class="pos">— <span class="en">Product Management & User Operations Intern</span><span class="zh">产品管理与用户运营实习生</span></span></span><span class="jmeta"><span class="en">Beijing · Aug 2022 – Jan 2023</span><span class="zh">北京 · 2022.08 – 2023.01</span></span></div>
+      <ul>
+        <li><span class="en"><b>Business-operations optimization</b> — managed 3 projects to optimize operations, using modeling and data analysis to develop concrete strategies for user interaction and cost reduction.</span><span class="zh"><b>业务运营优化</b> —— 负责 3 个优化运营的项目，运用建模与数据分析为用户互动与降本制定具体策略。</span></li>
+        <li><span class="en"><b>Data & process analysis</b> — analyzed large datasets and optimized processes in Python, SQL and VBA, identifying optimization opportunities, building predictive models, and implementing data-driven user-interaction strategies.</span><span class="zh"><b>数据与流程分析</b> —— 用 Python、SQL、VBA 分析大规模数据集并优化流程，识别优化机会、构建预测模型、落地数据驱动的用户互动策略。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-h"><span class="en">Education</span><span class="zh">教育背景</span></div>
+    <div class="sec-sub" style="margin-bottom:16px"></div>
+
+    <div class="edu">
+      <div class="l"><b>ESCP Business School <span class="en">(London & Paris)</span><span class="zh">（伦敦、巴黎校区）</span></b>
+        <div class="c"><span class="en">Master in Management — Finance. Capital markets, financial modeling, corporate valuation, derivatives, structured finance.</span><span class="zh">管理学硕士（金融专业）。资本市场、金融建模、公司估值、衍生品、结构性融资。</span></div>
+      </div>
+      <div class="r">2023 – 2026</div>
+    </div>
+    <div class="edu">
+      <div class="l"><b>Beijing International Studies University <span class="en"></span><span class="zh"> 北京第二外国语学院</span></b>
+        <div class="c"><span class="en">BA in Language & Culture (French, Japanese); minor in New Media (Communication University of China); self-taught Psychology (Yale / Coursera certificate).</span><span class="zh">语言与文化学士（法语、日语）；中国传媒大学网络与新媒体辅修；自学心理学并获耶鲁大学 Coursera 证书。</span></div>
+      </div>
+      <div class="r">2019 – 2023</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="en">Yanjin Li · </span><span class="zh">李彦瑾 · </span>
+    <a href="mailto:geraldineliyanjin@gmail.com">geraldineliyanjin@gmail.com</a> ·
+    <a href="https://github.com/Yanjin-ai" target="_blank" rel="noopener">github.com/Yanjin-ai</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var html=document.documentElement, btn=document.getElementById('lang');
+  function apply(l){
+    html.classList.remove('lang-en','lang-zh');html.classList.add('lang-'+l);
+    html.lang=l==='zh'?'zh-CN':'en';btn.textContent=l==='zh'?'EN':'中文';
+    try{localStorage.setItem('pf-lang',l)}catch(e){}
+  }
+  var s=null;try{s=localStorage.getItem('pf-lang')}catch(e){}
+  apply(s==='zh'?'zh':'en');
+  btn.addEventListener('click',function(){apply(html.classList.contains('lang-en')?'zh':'en')});
+})();
+</script>
+</body>
+</html>
