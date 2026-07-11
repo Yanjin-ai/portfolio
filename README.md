@@ -2,7 +2,8 @@
 
 **Live site:** https://yanjin-ai.github.io/portfolio/ — bilingual (EN / 中文)
 
-**Résumé (2-page):** [EN](Yanjin-Li-Resume-EN.pdf) · [中文](Yanjin-Li-Resume-ZH.pdf)  |  **Full portfolio CV:** [EN](Yanjin-Li-CV-EN.pdf) · [中文](Yanjin-Li-CV-ZH.pdf)
+**Résumé (2-page)** — PDF [EN](Yanjin-Li-Resume-EN.pdf) · [中文](Yanjin-Li-Resume-ZH.pdf) · Word [EN](Yanjin-Li-Resume-EN.docx) · [中文](Yanjin-Li-Resume-ZH.docx)
+**Full portfolio CV** — PDF [EN](Yanjin-Li-CV-EN.pdf) · [中文](Yanjin-Li-CV-ZH.pdf)
 
 Eleven AI projects designed, built and evaluated solo over three months (May–Jul 2026) — training-method research, multi-device AI systems, applied decision systems, and shipped products. Self-taught, entirely from papers and online courses.
 
