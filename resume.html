@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yanjin Li — Résumé</title>
+<style>
+  :root{
+    --ink:#1A1A1A; --sub:#4A4A4A; --faint:#7A7A7A; --line:#D9D6CF; --accent:#1F3A5F;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue","PingFang SC","Noto Sans SC",sans-serif;
+    --serif:"Iowan Old Style",Palatino,Georgia,"Songti SC",serif;
+    --mono:ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#f3f2ef;color:var(--ink);font-family:var(--sans);font-size:12px;line-height:1.42}
+  .lang-en .zh{display:none!important}
+  .lang-zh .en{display:none!important}
+  .sheet{max-width:820px;margin:18px auto;background:#fff;padding:30px 36px;box-shadow:0 1px 6px rgba(0,0,0,.1)}
+  a{color:var(--accent);text-decoration:none}
+
+  .langbtn{position:fixed;top:12px;right:12px;border:1px solid var(--accent);background:#fff;color:var(--accent);border-radius:16px;padding:4px 12px;font-size:12px;cursor:pointer;font-family:var(--sans);z-index:10}
+
+  h1{font-family:var(--serif);font-size:25px;font-weight:600;letter-spacing:.01em}
+  .role{color:var(--accent);font-size:12.5px;font-weight:500;margin-top:2px}
+  .contact{margin-top:5px;font-size:11px;color:var(--faint);display:flex;flex-wrap:wrap;gap:4px 12px}
+  .contact a{color:var(--sub)}
+  .summary{margin-top:9px;font-size:11.5px;color:var(--sub)}
+  .summary b{color:var(--ink)}
+
+  h2{font-family:var(--serif);font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);margin:15px 0 7px;padding-bottom:3px;border-bottom:1.5px solid var(--ink)}
+
+  .p{margin-bottom:6px}
+  .p .h{font-size:11.8px}
+  .p .h b{font-weight:700}
+  .p .h .cat{color:var(--faint);font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.04em}
+  .p .d{font-size:11px;color:var(--sub)}
+  .p .t{font-size:9.5px;color:var(--accent);font-family:var(--mono)}
+  .also{font-size:10.5px;color:var(--sub);margin-top:3px}
+  .also b{color:var(--ink);font-weight:600}
+
+  .job{margin-bottom:7px}
+  .job .r{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+  .job .o{font-weight:700;font-size:11.8px}
+  .job .o .pos{font-weight:400;color:var(--sub)}
+  .job .m{font-size:10px;color:var(--faint);font-family:var(--mono);white-space:nowrap}
+  .job ul{margin:2px 0 0;padding-left:15px}
+  .job li{font-size:10.8px;color:var(--sub);margin-bottom:1.5px}
+
+  .edu{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+  .edu .o{font-weight:600;font-size:11.5px}
+  .edu .c{font-size:10.5px;color:var(--sub)}
+  .edu .m{font-size:10px;color:var(--faint);font-family:var(--mono);white-space:nowrap}
+
+  .skills{font-size:11px;color:var(--sub)}
+  .skills .row{margin-bottom:3px}
+  .skills b{color:var(--ink)}
+
+  @media print{
+    body{background:#fff;font-size:10.2px}
+    .sheet{margin:0;max-width:none;box-shadow:none;padding:0}
+    .langbtn{display:none}
+    .p,.job,.edu{break-inside:avoid}
+    h2{margin:12px 0 6px}
+    @page{margin:12mm 13mm}
+  }
+</style>
+</head>
+<body>
+<button class="langbtn" id="lang">中文</button>
+<div class="sheet">
+
+  <h1>Yanjin Li <span class="zh" style="font-family:var(--serif);font-size:18px">李彦瑾</span></h1>
+  <div class="role"><span class="en">Self-taught AI Engineer & Researcher — research · systems · applied ML · product</span><span class="zh">自学 AI 工程师与研究者 —— 研究 · 系统 · 应用 ML · 产品</span></div>
+  <div class="contact">
+    <a href="mailto:geraldineliyanjin@gmail.com">geraldineliyanjin@gmail.com</a>
+    <a href="https://github.com/Yanjin-ai">github.com/Yanjin-ai</a>
+    <a href="https://yanjin-ai.github.io/portfolio/">yanjin-ai.github.io/portfolio</a>
+  </div>
+  <div class="summary">
+    <span class="en">Self-taught AI builder — learning from papers and courses since early 2026, I designed, built and evaluated <b>11 projects in three months</b>, spanning training-method research, multi-device AI systems, applied decision systems and shipped products. Prior experience in markets & corporate banking (<b>BNP Paribas, HSBC</b>) and product & growth (<b>TikTok, DiDi</b>); MSc in Management & Finance, <b>ESCP</b>. Fluent in Chinese, English and French.</span>
+    <span class="zh">自学成长的 AI 建造者 —— 自 2026 年初起靠论文与课程自学，在<b>三个月内独立设计、实现并评估了 11 个项目</b>，覆盖训练方法研究、多设备 AI 系统、应用决策系统与已上线产品。此前有金融市场与对公银行（<b>法国巴黎银行、汇丰</b>）及产品与增长（<b>TikTok、滴滴</b>）经历；<b>ESCP</b> 管理学与金融硕士。中英法三语流利。</span>
+  </div>
+
+  <h2><span class="en">Selected Projects</span><span class="zh">精选项目</span></h2>
+
+  <div class="p">
+    <div class="h"><b>Zero Gradient</b> — <span class="en">4.16B-parameter LM trained with no backpropagation</span><span class="zh">无反向传播训练的 4.16B 参数语言模型</span> <span class="cat">research</span></div>
+    <div class="d"><span class="en">Trained a content-routed MoE language model with autograd globally disabled on a single T4; ran a 5-phase capability-boundary study and a controlled experiment proving the ceiling is architectural, not algorithmic. Paper draft + arXiv package.</span><span class="zh">在单块 T4 上全局禁用 autograd 训练内容路由 MoE 语言模型；用五阶段能力边界研究 + 对照实验证明天花板在架构而非算法。论文草稿 + arXiv 包。</span></div>
+    <div class="t">PyTorch · MoE · layer-local learning · WikiText-103</div>
+  </div>
+
+  <div class="p">
+    <div class="h"><b>Gemma4all</b> — <span class="en">cross-device AI task system</span><span class="zh">跨设备 AI 任务系统</span> <span class="cat">systems</span></div>
+    <div class="d"><span class="en">Schema-first (42 JSON schemas), event-sourced, local-first system with fail-closed human-in-the-loop approvals and a privacy-based routing engine across iOS, Android and macOS; on-device inference via LiteRT-LM on Metal GPU.</span><span class="zh">Schema-first（42 份 JSON Schema）、事件溯源、本地优先系统，含 fail-closed 人在回路审批与基于隐私的路由引擎，覆盖 iOS/Android/macOS；端侧推理基于 Metal GPU 上的 LiteRT-LM。</span></div>
+    <div class="t">TypeScript · Python · Swift · Kotlin · JSON Schema · event sourcing</div>
+  </div>
+
+  <div class="p">
+    <div class="h"><b>TriageGeist</b> — <span class="en">trustworthy emergency-triage decision stack</span><span class="zh">可信急诊分诊决策栈</span> <span class="cat">applied ML</span></div>
+    <div class="d"><span class="en">Found 99.7% label leakage and refused to exploit it; built a text-blind GBDT (QWK 0.93) wrapped in isotonic calibration, conformal uncertainty, a bootstrap fairness audit and an operations console. 12/12 tests.</span><span class="zh">发现 99.7% 标签泄漏并拒绝利用；构建文本盲 GBDT（QWK 0.93），外加 isotonic 校准、conformal 不确定性、bootstrap 公平性审计与运营控制台。12/12 测试通过。</span></div>
+    <div class="t">LightGBM · conformal prediction · calibration · fairness audit</div>
+  </div>
+
+  <div class="p">
+    <div class="h"><b>NeuroGolf (ARC-AGI)</b> — <span class="en">minimal ONNX circuit compiler</span><span class="zh">最小 ONNX 电路编译器</span> <span class="cat">research</span></div>
+    <div class="d"><span class="en">Reframed an ARC-AGI "neural golf" contest as program synthesis; reverse-engineered the scorer into a cost model and compiled true task rules into overfitting-proof integer-weight circuits validated on 3000+ generated samples.</span><span class="zh">把 ARC-AGI"神经高尔夫"比赛重构为程序合成；将评分器逆向成成本模型，把真规则编译成抗过拟合的整数权重电路，并在 3000+ 生成样例上验证。</span></div>
+    <div class="t">ONNX · program synthesis · scorer reverse-engineering</div>
+  </div>
+
+  <div class="p">
+    <div class="h"><b>AI Showrunner</b> — <span class="en">one sentence → subtitled vertical short film</span><span class="zh">一句话 → 带字幕竖屏短剧</span> <span class="cat">product</span></div>
+    <div class="d"><span class="en">Multimodal agent pipeline (script → storyboard → video generation) with a vision-model critic loop driving targeted retries and cross-shot character consistency; six end-to-end films produced.</span><span class="zh">多模态 agent 流水线（剧本 → 分镜 → 视频生成），VL 评审闭环驱动定向重试与跨镜头角色一致性；端到端产出六部成片。</span></div>
+    <div class="t">FastAPI · Qwen-VL critic · I2V/T2V · ffmpeg</div>
+  </div>
+
+  <div class="p">
+    <div class="h"><b>Offline French Companion</b> — <span class="en">in-browser LLM language tutor</span><span class="zh">纯浏览器 LLM 语言学习助手</span> <span class="cat">product</span></div>
+    <div class="d"><span class="en">A full language assistant running entirely in-browser and offline: WebLLM (quantized Qwen) dictionary + Whisper speech + OCR + TTS, with schema-constrained output and a GB-scale weight-caching strategy.</span><span class="zh">完全在浏览器内离线运行的语言助手：WebLLM（量化 Qwen）词典 + Whisper 语音 + OCR + 朗读，schema 约束输出，并有 GB 级权重缓存策略。</span></div>
+    <div class="t">WebLLM · WebGPU · Whisper · Tesseract.js · PWA</div>
+  </div>
+
+  <div class="also"><b><span class="en">Also built:</span><span class="zh">另做：</span></b> <span class="en">Nemotron post-training pipeline (30B MoE, full failure postmortem) · Orbit Wars (multi-agent evaluation methodology) · Maze Crawler (strategy agent with CI) · VoiceInput (pure-Swift macOS speech input) · Atelier Post (shipped art-to-Instagram tool, web/PWA/iOS).</span><span class="zh">Nemotron 后训练流水线（30B MoE，完整失败复盘）· Orbit Wars（多智能体评估方法论）· Maze Crawler（带 CI 的策略 agent）· VoiceInput（纯 Swift macOS 语音输入）· Atelier Post（已上线的艺术发布工具，Web/PWA/iOS）。</span></div>
+
+  <h2><span class="en">Professional Experience</span><span class="zh">职业经历</span></h2>
+
+  <div class="job">
+    <div class="r"><span class="o">BNP Paribas <span class="pos">— <span class="en">Global Corporate Banking Intern</span><span class="zh">对公银行部实习生</span></span></span><span class="m"><span class="en">Paris · Dec 2025 – Present</span><span class="zh">巴黎 · 2025.12 – 至今</span></span></div>
+    <ul>
+      <li><span class="en">Structured tailored cross-border transactional and financing solutions for multinational clients; built and presented pitchbooks combining market analysis with pricing and cross-border liquidity.</span><span class="zh">为跨国客户设计定制化的跨境交易与融资方案；制作并演示结合市场分析、定价与跨境流动性的推介材料。</span></li>
+      <li><span class="en">Helped land internal AI tooling — built RAG knowledge bases on Open WebUI and Dify to improve client-response efficiency (book incl. CATL, BYD, Alipay, Midea, TCL, JD.com).</span><span class="zh">协助 AI 工具在行内落地 —— 在 Open WebUI 与 Dify 上搭建 RAG 知识库提升客户答复效率（客户含宁德时代、比亚迪、支付宝、美的、TCL、京东等）。</span></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="r"><span class="o">HSBC <span class="pos">— <span class="en">Global Markets, Liquidity & Investment Intern</span><span class="zh">全球市场部 流动性与投资实习生</span></span></span><span class="m"><span class="en">Paris · Jun – Nov 2024</span><span class="zh">巴黎 · 2024.06 – 2024.11</span></span></div>
+    <ul>
+      <li><span class="en">Monitored Fed/ECB/BoE rates and money markets to optimize short-term EMEA portfolios under LCR/NSFR; built automated VBA/Excel tools tracking rate moves and pricing gaps in real time.</span><span class="zh">跟踪美联储/欧洲央行/英格兰银行利率与货币市场，在 LCR/NSFR 下优化 EMEA 短期组合；构建 VBA/Excel 自动化工具实时跟踪利率与定价缺口。</span></li>
+      <li><span class="en">Developed dynamic pricing models for wholesale deposits; contributed to the ALCM committee (gap-risk analysis, funding-cost optimization).</span><span class="zh">为批发存款开发动态定价模型；参与 ALCM 委员会（缺口风险分析、融资成本优化）。</span></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="r"><span class="o">TikTok <span class="pos">— <span class="en">Growth Strategy Intern</span><span class="zh">增长策略实习生</span></span></span><span class="m"><span class="en">Beijing · Feb – May 2023</span><span class="zh">北京 · 2023.02 – 2023.05</span></span></div>
+    <ul>
+      <li><span class="en">Contributed to 10+ strategic projects, growing SaaS/AI market share by 23%; ran SQL/Excel analytics for a 20+ member team and lifted user conversion by 13% in one month.</span><span class="zh">参与 10+ 战略项目，使 SaaS/AI 市场份额提升 23%；为 20+ 人团队做 SQL/Excel 分析，一个月内将用户转化率提升 13%。</span></li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="r"><span class="o">Uber China · DiDi <span class="pos">— <span class="en">Product Management & User Operations Intern</span><span class="zh">产品管理与用户运营实习生</span></span></span><span class="m"><span class="en">Beijing · Aug 2022 – Jan 2023</span><span class="zh">北京 · 2022.08 – 2023.01</span></span></div>
+    <ul>
+      <li><span class="en">Managed 3 business-operations projects; analyzed large datasets in Python, SQL and VBA to build predictive models and data-driven user-interaction strategies.</span><span class="zh">负责 3 个业务运营优化项目；用 Python、SQL、VBA 分析大规模数据集，构建预测模型与数据驱动的用户互动策略。</span></li>
+    </ul>
+  </div>
+
+  <h2><span class="en">Education</span><span class="zh">教育背景</span></h2>
+  <div class="edu">
+    <div><span class="o">ESCP Business School <span class="en">(Paris & London)</span><span class="zh">（巴黎、伦敦校区）</span></span> <span class="c"><span class="en">— Master in Management, Finance</span><span class="zh">— 管理学硕士（金融）</span></span></div>
+    <span class="m">2023 – 2026</span>
+  </div>
+  <div class="edu">
+    <div><span class="o">Beijing International Studies University<span class="zh"> 北京第二外国语学院</span></span> <span class="c"><span class="en">— BA Language & Culture (French, Japanese); minor New Media (CUC); self-taught Psychology (Yale/Coursera)</span><span class="zh">— 语言与文化学士（法语、日语）；中传网络与新媒体辅修；自学心理学（耶鲁/Coursera）</span></span></div>
+    <span class="m">2019 – 2023</span>
+  </div>
+
+  <h2><span class="en">Skills</span><span class="zh">技能</span></h2>
+  <div class="skills">
+    <div class="row"><b><span class="en">Programming</span><span class="zh">编程</span>:</b> Python · TypeScript/Node · Swift · Kotlin · JavaScript · SQL · VBA</div>
+    <div class="row"><b><span class="en">AI / ML</span><span class="zh">AI / ML</span>:</b> PyTorch · LoRA/PEFT · MoE · calibration · conformal prediction · LiteRT-LM · ONNX · WebLLM · Whisper · <span class="en">LLM/agent orchestration · schema-first & event-sourced systems</span><span class="zh">LLM/agent 编排 · schema-first 与事件溯源系统</span></div>
+    <div class="row"><b><span class="en">Spoken languages</span><span class="zh">语言</span>:</b> <span class="en">Chinese (native) · English (fluent) · French (fluent) · Japanese (working)</span><span class="zh">中文（母语）· 英文（流利）· 法语（流利）· 日语（可用）</span></div>
+  </div>
+
+</div>
+<script>
+(function(){
+  var html=document.documentElement, btn=document.getElementById('lang');
+  function apply(l){html.classList.remove('lang-en','lang-zh');html.classList.add('lang-'+l);html.lang=l==='zh'?'zh-CN':'en';btn.textContent=l==='zh'?'EN':'中文';try{localStorage.setItem('pf-lang',l)}catch(e){}}
+  var s=null;try{s=localStorage.getItem('pf-lang')}catch(e){}
+  apply(s==='zh'?'zh':'en');
+  btn.addEventListener('click',function(){apply(html.classList.contains('lang-en')?'zh':'en')});
+})();
+</script>
+</body>
+</html>
