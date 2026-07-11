@@ -77,8 +77,8 @@
     <a href="https://yanjin-ai.github.io/portfolio/">yanjin-ai.github.io/portfolio</a>
   </div>
   <div class="summary">
-    <span class="en">Self-taught AI builder — learning from papers and courses since early 2026, I designed, built and evaluated <b>11 projects in three months</b>, spanning training-method research, multi-device AI systems, applied decision systems and shipped products. Prior experience in markets & corporate banking (<b>BNP Paribas, HSBC</b>) and product & growth (<b>TikTok, DiDi</b>); MSc in Management & Finance, <b>ESCP</b>. Fluent in Chinese, English and French.</span>
-    <span class="zh">自学成长的 AI 建造者 —— 自 2026 年初起靠论文与课程自学，在<b>三个月内独立设计、实现并评估了 11 个项目</b>，覆盖训练方法研究、多设备 AI 系统、应用决策系统与已上线产品。此前有金融市场与对公银行（<b>法国巴黎银行、汇丰</b>）及产品与增长（<b>TikTok、滴滴</b>）经历；<b>ESCP</b> 管理学与金融硕士。中英法三语流利。</span>
+    <span class="en">Self-taught AI builder — learning from papers and courses since early 2026, I designed, built and evaluated <b>11 projects in three months</b>, spanning training-method research, multi-device AI systems, applied decision systems and shipped products.</span>
+    <span class="zh">自学成长的 AI 建造者 —— 自 2026 年初起靠论文与课程自学，在<b>三个月内独立设计、实现并评估了 11 个项目</b>，覆盖训练方法研究、多设备 AI 系统、应用决策系统与已上线产品。</span>
   </div>
 
   <h2><span class="en">Selected Projects</span><span class="zh">精选项目</span></h2>
@@ -114,12 +114,12 @@
   </div>
 
   <div class="p">
-    <div class="h"><b>Offline French Companion</b> — <span class="en">in-browser LLM language tutor</span><span class="zh">纯浏览器 LLM 语言学习助手</span> <span class="cat">product</span></div>
-    <div class="d"><span class="en">A full language assistant running entirely in-browser and offline: WebLLM (quantized Qwen) dictionary + Whisper speech + OCR + TTS, with schema-constrained output and a GB-scale weight-caching strategy.</span><span class="zh">完全在浏览器内离线运行的语言助手：WebLLM（量化 Qwen）词典 + Whisper 语音 + OCR + 朗读，schema 约束输出，并有 GB 级权重缓存策略。</span></div>
-    <div class="t">WebLLM · WebGPU · Whisper · Tesseract.js · PWA</div>
+    <div class="h"><b>Nemotron Post-training</b> — <span class="en">post-training pipeline for a 30B MoE reasoning model</span><span class="zh">30B MoE 推理模型的后训练流水线</span> <span class="cat">research</span></div>
+    <div class="d"><span class="en">Built a reproducible rule-teacher → CoT-SFT pipeline (baseline EM 0.75; 30B MoE loaded in 4-bit on one GPU, upstream cache bug found and patched, multi-dimensional reward shaping), then root-caused the training failure across six postmortems and designed the recovery route.</span><span class="zh">构建可复现的"规则 teacher → CoT-SFT"流水线（基线 EM 0.75；单卡 4-bit 加载 30B MoE、发现并修复上游 cache bug、多维奖励塑形），随后用六份事后分析彻底归因训练失败并设计恢复路线。</span></div>
+    <div class="t">Transformers · PEFT/LoRA · 4-bit quantization · GRPO reward shaping</div>
   </div>
 
-  <div class="also"><b><span class="en">Also built:</span><span class="zh">另做：</span></b> <span class="en">Nemotron post-training pipeline (30B MoE, full failure postmortem) · Orbit Wars (multi-agent evaluation methodology) · Maze Crawler (strategy agent with CI) · VoiceInput (pure-Swift macOS speech input) · Atelier Post (shipped art-to-Instagram tool, web/PWA/iOS).</span><span class="zh">Nemotron 后训练流水线（30B MoE，完整失败复盘）· Orbit Wars（多智能体评估方法论）· Maze Crawler（带 CI 的策略 agent）· VoiceInput（纯 Swift macOS 语音输入）· Atelier Post（已上线的艺术发布工具，Web/PWA/iOS）。</span></div>
+  <div class="also"><b><span class="en">Also built:</span><span class="zh">另做：</span></b> <span class="en">Offline French Companion (in-browser LLM tutor — WebLLM + Whisper + OCR, fully offline) · Orbit Wars (multi-agent evaluation methodology) · Maze Crawler (strategy agent with CI) · VoiceInput (pure-Swift macOS speech input) · Atelier Post (shipped art-to-Instagram tool, web/PWA/iOS).</span><span class="zh">离线法语助手（纯浏览器 LLM —— WebLLM + Whisper + OCR，完全离线）· Orbit Wars（多智能体评估方法论）· Maze Crawler（带 CI 的策略 agent）· VoiceInput（纯 Swift macOS 语音输入）· Atelier Post（已上线的艺术发布工具，Web/PWA/iOS）。</span></div>
 
   <h2><span class="en">Professional Experience</span><span class="zh">职业经历</span></h2>
 
@@ -168,6 +168,7 @@
     <div class="row"><b><span class="en">Programming</span><span class="zh">编程</span>:</b> Python · TypeScript/Node · Swift · Kotlin · JavaScript · SQL · VBA</div>
     <div class="row"><b><span class="en">AI / ML</span><span class="zh">AI / ML</span>:</b> PyTorch · LoRA/PEFT · MoE · calibration · conformal prediction · LiteRT-LM · ONNX · WebLLM · Whisper · <span class="en">LLM/agent orchestration · schema-first & event-sourced systems</span><span class="zh">LLM/agent 编排 · schema-first 与事件溯源系统</span></div>
     <div class="row"><b><span class="en">Spoken languages</span><span class="zh">语言</span>:</b> <span class="en">Chinese (native) · English (fluent) · French (fluent) · Japanese (working)</span><span class="zh">中文（母语）· 英文（流利）· 法语（流利）· 日语（可用）</span></div>
+    <div class="row"><b><span class="en">Strengths</span><span class="zh">特质</span>:</b> <span class="en">High agency and a self-taught, zero-to-one builder — curious, reflective and resilient, with strong insight and a painter's eye for design, at home across cultures and languages.</span><span class="zh">高 agency、自学型的从零到一建造者 —— 好奇、善反思、有韧性，具备敏锐洞察与画家般的设计眼光，自在穿行于不同文化与语言之间。</span></div>
   </div>
 
 </div>
