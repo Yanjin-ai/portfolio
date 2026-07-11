@@ -33,7 +33,7 @@ Master in Management & Finance, **ESCP** (Paris & London, 2023–2026) · BA Lan
 Internships: **BNP Paribas** (Global Corporate Banking) · **HSBC** (Global Markets, Liquidity) · **TikTok** (Growth Strategy) · **Uber China · DiDi** (Product & User Operations).
 
 ## Contact
-[geraldineliyanjin@gmail.com](mailto:geraldineliyanjin@gmail.com) · [github.com/Yanjin-ai](https://github.com/Yanjin-ai)
+[geraldineliyanjin@gmail.com](mailto:geraldineliyanjin@gmail.com) · [github.com/Yanjin-ai](https://github.com/Yanjin-ai) · [Painting · @yanjin.l.painting](https://www.instagram.com/yanjin.l.painting/)
 
 ---
 *This repo is the source of the live site above; edit `index.html` and push to update. PDFs are generated from the same page via headless Chrome.*
